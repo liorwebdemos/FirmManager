@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PopDb.Models;
 using WebApi.BL.Contracts;
-using WebApi.DAL.Contracts;
 
 namespace PopDb.Controllers
 {
