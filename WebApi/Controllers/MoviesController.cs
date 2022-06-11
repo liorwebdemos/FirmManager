@@ -8,7 +8,7 @@ namespace PopDb.Controllers
     [Route("api/[controller]")]
     public class MoviesController : ControllerBase
     {
-        private IBLMovies _blMovies;
+        private readonly IBLMovies _blMovies;
 
         public MoviesController(IBLMovies BLMovies) 
         {

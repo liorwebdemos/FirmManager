@@ -6,7 +6,7 @@ namespace WebApi.DAL.Helpers
 {
     public static class JsonHelper
     {
-        public static JsonSerializerOptions CustomJsonSerializerOptions = new()
+        public static readonly JsonSerializerOptions CustomJsonSerializerOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
