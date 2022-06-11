@@ -1,3 +1,8 @@
+using WebApi.BL.Contracts;
+using WebApi.BL.Implementation;
+using WebApi.DAL.Contracts;
+using WebApi.DAL.Implementation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// builder.Services.AddScoped<IMessageWriter, MessageWriter>();
+// DAL
+builder.Services.AddHttpClient<IMoviesService, ImdbApiMoviesService>();
+//builder.Services.AddScoped<IMoviesService, ImdbApiMoviesService>();
+
+// BL
+builder.Services.AddScoped<IBLMovies, BLMovies>();
 
 var app = builder.Build();
 
@@ -16,6 +26,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseHttpLogging();
 }
 
 app.UseHttpsRedirection();
