@@ -1163,7 +1163,7 @@ aurelia-animator-css@^1.0.4:
     aurelia-pal "^1.0.0"
     aurelia-templating "^1.0.0"
 
-aurelia-binding@^2.0.0:
+aurelia-binding@^2.0.0, aurelia-binding@^2.1.4:
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/aurelia-binding/-/aurelia-binding-2.5.4.tgz#c1c9221dd351bbf749df5e71aedc29b993a9ada0"
   integrity sha512-tYhYCFvQne+chO3p8KntCWj0r8oCXiCOGQ0yFbthHDBpjjTA4QlBwpGQ8nlGoGDKj7n4PoobeIjN3lEDKgKUyw==
@@ -1256,6 +1256,18 @@ aurelia-dependency-injection@^1.0.0, aurelia-dependency-injection@^1.3.0, aureli
     aurelia-metadata "^1.0.0"
     aurelia-pal "^1.0.0"
 
+aurelia-dialog@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/aurelia-dialog/-/aurelia-dialog-2.0.0.tgz#989ac3d9ab8e66fdf1059eeebe4c7b2115d5a0b7"
+  integrity sha512-udjvkIihIhZS5YzIvDSww5eVTiJ8/FH5bM2ehz37EfE0eOrlHEpXkq6KlrOsb9+C3EqqDZ+CyH0TT0oUbcX3oA==
+  dependencies:
+    aurelia-binding "^2.1.4"
+    aurelia-dependency-injection "^1.0.0"
+    aurelia-framework "^1.0.0"
+    aurelia-metadata "^1.0.0"
+    aurelia-pal "^1.0.0"
+    aurelia-templating "^1.8.2"
+
 aurelia-event-aggregator@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/aurelia-event-aggregator/-/aurelia-event-aggregator-1.0.3.tgz#80332d539a7fb680a031c4363cb1fea5ea2b8dbd"
@@ -1270,7 +1282,7 @@ aurelia-fetch-client@^1.8.2:
   dependencies:
     aurelia-pal "^1.3.0"
 
-aurelia-framework@^1.4.1:
+aurelia-framework@^1.0.0, aurelia-framework@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/aurelia-framework/-/aurelia-framework-1.4.1.tgz#76a76dfa555e3315daab4256c776434fb7932f43"
   integrity sha512-oFnJyqqIDk2Kk7iSy2YNm2MNQMbTVEiPpa9q0oGfDLclqUgv+L05rnkEW9vEpVTUMV8gmOTxIrDidNICrDT7HA==
@@ -1434,7 +1446,7 @@ aurelia-templating-router@^1.5.0:
     aurelia-path "^1.1.7"
     aurelia-templating "^1.11.1"
 
-aurelia-templating@^1.0.0, aurelia-templating@^1.11.1:
+aurelia-templating@^1.0.0, aurelia-templating@^1.11.1, aurelia-templating@^1.8.2:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/aurelia-templating/-/aurelia-templating-1.11.1.tgz#661df6d9ff09ec280ccf0fc4a94b702fceff0b24"
   integrity sha512-7Zrb/yvnIYBIlqGaLXIiBsmWMoFwo3SSoxyoucqWe/M80YpR4LJaTEKoZxhZZI6x9pU+tlFOBkwd/sA1JqPR8w==

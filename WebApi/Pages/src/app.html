@@ -1,12 +1,12 @@
 <template>
   <require from="@fortawesome/fontawesome-free/css/all.min.css"></require>
-  <require from="./styles.scss"></require>
-
-  <require from="./nav-bar.html"></require>
-
-  <nav-bar router.bind="router"></nav-bar>
+  <require from="./app.scss"></require>
+  <require from="./components/top-header/top-header.html"></require>
+  <require from="./components/welcome-message/welcome-message"></require>
 
   <div class="page-host">
+    <top-header></top-header>
+    <welcome-message></welcome-message>
     <router-view></router-view>
   </div>
 </template>

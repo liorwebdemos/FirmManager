@@ -4,29 +4,16 @@ import {Router, RouterConfiguration} from 'aurelia-router';
 export class App {
   public router: Router;
 
-  public configureRouter(config: RouterConfiguration, router: Router): Promise<void> | PromiseLike<void> | void {
+  // Note: a router is obviously redundant in this simple, simple app. it's just here for demonstration sake.
+  public configureRouter(config: RouterConfiguration, router: Router): void {
     config.title = 'Aurelia';
     config.map([
       {
-        route: ['', 'welcome'],
-        name: 'welcome',
-        moduleId: PLATFORM.moduleName('./welcome'),
+        route: '',
+        name: 'popular-movies',
+        moduleId: PLATFORM.moduleName('./components/popular-movies/popular-movies'),
         nav: true,
-        title: 'Welcome'
-      },
-      {
-        route: 'users',
-        name: 'users',
-        moduleId: PLATFORM.moduleName('./users'),
-        nav: true,
-        title: 'Github Users'
-      },
-      {
-        route: 'child-router',
-        name: 'child-router',
-        moduleId: PLATFORM.moduleName('./child-router'),
-        nav: true,
-        title: 'Child Router'
+        title: 'Popular Movies'
       }
     ]);
 
