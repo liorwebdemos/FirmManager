@@ -1,12 +1,12 @@
 <template>
-	<require from="@fortawesome/fontawesome-free/css/all.min.css"></require>
-	<require from="./app.scss"></require>
-	<require from="./components/top-header/top-header.html"></require>
-	<require from="./components/welcome-message/welcome-message"></require>
+  <require from="@fortawesome/fontawesome-free/css/all.min.css"></require>
+  <require from="./app.scss"></require>
+  <require from="./components/top-header/top-header.html"></require>
+  <require from="./components/welcome-message/welcome-message"></require>
 
-	<div class="page-host">
-		<top-header></top-header>
-		<welcome-message></welcome-message>
-		<router-view></router-view>
-	</div>
+  <div class="flex flex-col gap-y-10">
+    <top-header></top-header>
+    <welcome-message></welcome-message>
+    <router-view></router-view>
+  </div>
 </template>
