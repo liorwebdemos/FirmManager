@@ -12,11 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DAL
+// DALs
 builder.Services.AddHttpClient<IMoviesService, ImdbApiMoviesService>();
-//builder.Services.AddScoped<IMoviesService, ImdbApiMoviesService>();
 
-// BL
+// BLs
 builder.Services.AddScoped<IBLMovies, BLMovies>();
 
 var app = builder.Build();

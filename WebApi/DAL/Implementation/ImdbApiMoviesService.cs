@@ -40,7 +40,7 @@ namespace WebApi.DAL.Implementation
             httpResponse.EnsureSuccessStatusCode();
 
             var moviesList = await httpResponse.Content.ReadFromJsonAsync<MoviesList>(JsonHelper.CustomJsonSerializerOptions);
-            //-- OR via the custom extension method we created for string: --
+            //-- FYI, can also deserialize via the custom extension method we created for type string: --
             //var moviesListString = await httpResponse.Content.ReadAsStringAsync();
             //var moviesList = moviesListString.JsonDeserialize<MoviesList>();
             return moviesList?.items;
