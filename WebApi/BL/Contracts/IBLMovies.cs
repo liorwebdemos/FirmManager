@@ -4,6 +4,6 @@ namespace WebApi.BL.Contracts
 {
     public interface IBLMovies
     {
-        Task<IEnumerable<Movie>?> GetPopularMovies();
+        Task<IEnumerable<MovieModel>?> GetPopularMovies();
     }
 }

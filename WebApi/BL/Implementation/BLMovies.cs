@@ -13,7 +13,7 @@ namespace WebApi.BL.Implementation
             MoviesService = moviesService;
         }
 
-        public async Task<IEnumerable<Movie>?> GetPopularMovies()
+        public async Task<IEnumerable<MovieModel>?> GetPopularMovies()
         {
             var movies = await MoviesService.GetPopularMovies();
             return movies?.OrderByDescending(m => m.Year);

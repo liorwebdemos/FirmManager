@@ -1,5 +1,7 @@
 <template>
-	<div>
-		these are popular movies
-	</div>
+  <div>
+    <div repeat.for="movie of movies">
+      ${movie.fullTitle}
+    </div>
+  </div>
 </template>

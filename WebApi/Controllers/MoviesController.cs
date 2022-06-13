@@ -16,7 +16,7 @@ namespace PopDb.Controllers
         }
 
         [HttpGet("popular")]
-        public Task<IEnumerable<Movie>?> GetPopularMovies()
+        public Task<IEnumerable<MovieModel>?> GetPopularMovies()
         {
             return _blMovies.GetPopularMovies();
         }

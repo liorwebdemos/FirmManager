@@ -26,7 +26,15 @@
 	"editor.linkedEditing": true,
 	"editor.unicodeHighlight.ambiguousCharacters": false,
 	"cSpell.language": "en,he",
-	"cSpell.words": [],
+	"cSpell.words": [
+		"autoinject",
+		"bootstrapper",
+		"cssnano",
+		"fontawesome",
+		"fortawesome",
+		"Heebo",
+		"tailwindcss"
+	],
 	"files.exclude": {
 		"**/*.csproj": true,
 		"**/*.vspscc": true,

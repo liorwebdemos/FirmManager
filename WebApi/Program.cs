@@ -12,17 +12,29 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DALs
+// Add DALs
 builder.Services.AddHttpClient<IMoviesService, ImdbApiMoviesService>();
 
-// BLs
+// Add BLs
 builder.Services.AddScoped<IBLMovies, BLMovies>();
+
+// CORS Policiies
+var AllowAllCors = "_allowAllCors";
+builder.Services.AddCors(
+    options => options.AddPolicy(
+        name: AllowAllCors,
+        builder => builder
+            .AllowAnyOrigin() // .WithOrigins("http://localhost:8080")
+            .AllowAnyMethod()
+            .AllowAnyHeader())
+);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors(AllowAllCors);
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseHttpLogging();

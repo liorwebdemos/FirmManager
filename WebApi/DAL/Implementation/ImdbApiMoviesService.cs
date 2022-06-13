@@ -6,7 +6,7 @@ namespace WebApi.DAL.Implementation
 {
     public class MoviesList
     {
-        public Movie[]? items { get; set; }
+        public MovieModel[]? items { get; set; }
         public string? ErrorMessage { get; set; }
     }
 
@@ -34,7 +34,7 @@ namespace WebApi.DAL.Implementation
             _logger = logger;
         }
 
-        public async Task<IEnumerable<Movie>?> GetPopularMovies()
+        public async Task<IEnumerable<MovieModel>?> GetPopularMovies()
         {
             var httpResponse = await _httpClient.GetAsync($"MostPopularMovies/{ApiKey}");
             httpResponse.EnsureSuccessStatusCode();

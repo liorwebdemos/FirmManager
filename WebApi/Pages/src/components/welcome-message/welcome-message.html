@@ -1,5 +1,19 @@
 <template>
-  <div>
-    this is a welcome message
+  <div class="flex flex-col items-center gap-y-3 px-5">
+    <div class="text-xl font-semibold">Hey there, stranger!</div>
+    <div class="text-center">
+      Welcome to this simple, simple app <i class="far fa-smile"></i><br>
+      Hope you'll have a good time!
+    </div>
+    <div class="flex flex-row flex-nowrap gap-x-4 items-center text-sm tracking-tight">
+      <div class="flex flex-row items-center gap-x-2 px-2 py-0.5 rounded bg-amber-300 shadow-sm text-">
+        <i class="far fa-bell"></i>
+        <span>Disclaimer</span>
+      </div>
+      <div>
+        <div class="inline lg:block">While I do consider UX and design to be among my main strengths,</div>
+        <div class="inline lg:block">this is just a quick and simple demonstration for other types of stuff.</div>
+      </div>
+    </div>
   </div>
 </template>

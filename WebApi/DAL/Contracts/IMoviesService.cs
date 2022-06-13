@@ -6,6 +6,6 @@ namespace WebApi.DAL.Contracts
     {
         HttpClient HttpClient { get; }
         string ApiKey { get; }
-        Task<IEnumerable<Movie>?> GetPopularMovies();
+        Task<IEnumerable<MovieModel>?> GetPopularMovies();
     }
 }

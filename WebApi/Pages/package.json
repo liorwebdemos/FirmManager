@@ -13,6 +13,8 @@
 		"aurelia-bootstrapper": "^2.4.0",
 		"aurelia-dialog": "^2.0.0",
 		"aurelia-fetch-client": "^1.8.2",
+		"class-transformer": "^0.5.1",
+		"reflect-metadata": "^0.1.13",
 		"whatwg-fetch": "^3.6.2"
 	},
 	"devDependencies": {

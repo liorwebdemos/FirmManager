@@ -1,7 +1,7 @@
 namespace PopDb.Models
 {
     /// <summary></summary>
-    public class Movie
+    public class MovieModel
     {
         /// <summary></summary>
         public string? Id { get; set; }
