@@ -13,10 +13,10 @@ export class App
     config.map([
       {
         route: "",
-        name: "popular-movies",
-        moduleId: PLATFORM.moduleName("./components/popular-movies/popular-movies"),
+        name: "front-page",
+        moduleId: PLATFORM.moduleName("./components/front-page/front-page"),
         nav: true,
-        title: "Popular Movies"
+        title: "Front Page"
       }
     ]);
 

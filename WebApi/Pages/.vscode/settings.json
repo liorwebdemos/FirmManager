@@ -30,9 +30,13 @@
 		"autoinject",
 		"bootstrapper",
 		"cssnano",
+		"endregion",
 		"fontawesome",
 		"fortawesome",
 		"Heebo",
+		"nowrap",
+		"rgba",
+		"semibold",
 		"tailwindcss"
 	],
 	"files.exclude": {

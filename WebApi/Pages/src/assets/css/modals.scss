@@ -1,0 +1,60 @@
+// no need for on-the-fly margin calculations done by the plugin, to center the modal. we'll simply use flex.
+ux-dialog-container {
+	@apply flex;
+	@apply flex-col;
+	@apply justify-center;
+	@apply items-center;
+	& > div {
+		@apply mt-0 mb-0 #{!important};
+		// set modal max width in relation to screen
+		width: 95%; 
+		@screen sm {
+			width: 92.5%;
+		}
+		@screen md {
+			width: 87.5%;
+		}
+		@screen lg {
+			width: 80%;
+		}
+		@screen xl {
+			width: 66.666667%;
+		}
+		& > div {
+			@apply flex-grow;
+			@apply w-full;
+			@apply flex;
+			@apply flex-col;
+		}
+	}
+}
+
+ux-dialog-overlay {
+	background-color: rgba(0, 0, 0, 0.35);
+}
+
+ux-dialog.pd-modal {
+	@apply w-full; // override default `width: fit-content`
+  min-height: 200px;
+  max-height: 80vh;
+	@apply flex;
+	@apply flex-col;
+	@apply items-stretch;
+	@apply bg-white;
+	@apply rounded-lg;
+	@apply shadow;
+	@apply p-2.5;
+  @screen lg {
+    @apply p-5;
+  }
+	ux-dialog-header {
+    @apply text-xl;
+    @apply font-semibold;
+  }
+	ux-dialog-body {
+    @apply overflow-y-auto;
+		@apply flex-grow;
+		@apply flex flex-col; // we need this to be a flex container in order for overflows to play nicely
+		@apply mb-5;
+	}
+}

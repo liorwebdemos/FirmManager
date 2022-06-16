@@ -3,7 +3,7 @@ import { PLATFORM } from "aurelia-pal";
 
 export function configure(config: FrameworkConfiguration): void
 {
-	config.globalResources([
-		// PLATFORM.moduleName("./bla1-to-bla2"),
-	]);
+  config.globalResources([
+    PLATFORM.moduleName("./to-formatted-number")
+  ]);
 }

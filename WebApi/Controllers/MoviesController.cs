@@ -20,5 +20,11 @@ namespace PopDb.Controllers
         {
             return _blMovies.GetPopularMovies();
         }
+
+        [HttpGet("")]
+        public Task<IEnumerable<MovieModel>?> GetMoviesByKeyword(string keyword)
+        {
+            return _blMovies.GetMoviesByKeyword(keyword);
+        }
     }
 }

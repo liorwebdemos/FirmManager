@@ -1,0 +1,13 @@
+input.pd-input{
+  @apply h-10;
+  @apply w-60;
+  @apply px-5 py-2.5;
+  @apply rounded;
+  @apply border border-gray-300;
+  @apply bg-gray-50;
+  &:focus {
+    @apply outline-none;
+    @apply border border-gray-400;
+    @apply bg-gray-100;
+  }
+}

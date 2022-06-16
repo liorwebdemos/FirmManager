@@ -10,10 +10,10 @@ export function configure(aurelia: Aurelia): void
     .feature(PLATFORM.moduleName("value-converters/index"))
     .plugin(PLATFORM.moduleName("aurelia-dialog"), (config: DialogConfiguration) =>
     {
+      // change some defaults
       config.settings.lock = false;
-      config.settings.overlayDismiss = false;
+      config.settings.overlayDismiss = true;
       config.useRenderer("ux")
-        .useCSS("")
         .useStandardResources();
     });
 

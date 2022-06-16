@@ -1,3 +1,4 @@
+using Microsoft.Net.Http.Headers;
 using WebApi.BL.Contracts;
 using WebApi.BL.Implementation;
 using WebApi.DAL.Contracts;
@@ -29,6 +30,9 @@ builder.Services.AddCors(
             .AllowAnyHeader())
 );
 
+// Response Caching Middleware
+builder.Services.AddResponseCaching();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,6 +43,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseHttpLogging();
 }
+
+app.Use(async (context, next) =>
+{
+    context.Response.GetTypedHeaders().CacheControl =
+        new CacheControlHeaderValue()
+        {
+            Public = true,
+            MaxAge = TimeSpan.FromHours(1)
+        };
+    await next();
+});
 
 app.UseHttpsRedirection();
 

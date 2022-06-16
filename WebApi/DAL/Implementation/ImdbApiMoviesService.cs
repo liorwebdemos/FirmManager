@@ -2,12 +2,28 @@
 using WebApi.DAL.Contracts;
 using WebApi.DAL.Helpers;
 
+// see: https://imdb-api.com/api
 namespace WebApi.DAL.Implementation
 {
-    public class MoviesList
+    public class MostPopularData
     {
-        public MovieModel[]? items { get; set; }
+        public List<MovieModel>? Items { get; set; }
         public string? ErrorMessage { get; set; }
+    }
+    public class SearchData
+    {
+        public string? SearchType { get; set; }
+        public string? Expression { get; set; }
+        public List<SearchResult>? Results { get; set; }
+        public string? ErrorMessage { get; set; }
+    }
+    public class SearchResult
+    {
+        public string? Id { get; set; }
+        public string? ResultType { get; set; }
+        public string? Image { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
     }
 
     public class ImdbApiMoviesService : IMoviesService
@@ -39,11 +55,26 @@ namespace WebApi.DAL.Implementation
             var httpResponse = await _httpClient.GetAsync($"MostPopularMovies/{ApiKey}");
             httpResponse.EnsureSuccessStatusCode();
 
-            var moviesList = await httpResponse.Content.ReadFromJsonAsync<MoviesList>(JsonHelper.CustomJsonSerializerOptions);
-            //-- FYI, can also deserialize via the custom extension method we created for type string: --
-            //var moviesListString = await httpResponse.Content.ReadAsStringAsync();
-            //var moviesList = moviesListString.JsonDeserialize<MoviesList>();
-            return moviesList?.items;
+            var mostPopularData = await httpResponse.Content.ReadFromJsonAsync<MostPopularData>(JsonHelper.CustomJsonSerializerOptions);
+            //FYI, can also deserialize via the custom extension method we created for type string:
+            // var mostPopularDataString = await httpResponse.Content.ReadAsStringAsync();
+            // var mostPopularData = mostPopularDataString.JsonDeserialize<MostPopularData>();
+            return mostPopularData?.Items;
+        }
+
+        public async Task<IEnumerable<MovieModel>?> GetMoviesByKeyword(string keyword)
+        {
+            var httpResponse = await _httpClient.GetAsync($"SearchMovie/{ApiKey}/{keyword}");
+            httpResponse.EnsureSuccessStatusCode();
+
+            var searchData = await httpResponse.Content.ReadFromJsonAsync<SearchData>(JsonHelper.CustomJsonSerializerOptions);
+            //In serious projects, we'll probably use a nuget (like Mapster) to do mappings.
+
+            return searchData?.Results?.Select(r => new MovieModel {
+                Id = r.Id,
+                Title = r.Title,
+                Image = r.Image
+            });
         }
     }
 }
