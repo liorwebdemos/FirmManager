@@ -1173,15 +1173,6 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-aurelia-animator-css@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/aurelia-animator-css/-/aurelia-animator-css-1.0.4.tgz#8336ab84f9a8bf60a4536e99145e73a80c0f0dac"
-  integrity sha512-MxKodsU04isetk9Xx5D/qzQGu2IMGeD4xZaBuitddll+cFCPzojdoi44NuIgQr75InTvoNvSy/AhKbw/QVHiyw==
-  dependencies:
-    aurelia-metadata "^1.0.0"
-    aurelia-pal "^1.0.0"
-    aurelia-templating "^1.0.0"
-
 aurelia-binding@^2.0.0, aurelia-binding@^2.1.4:
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/aurelia-binding/-/aurelia-binding-2.5.4.tgz#c1c9221dd351bbf749df5e71aedc29b993a9ada0"
