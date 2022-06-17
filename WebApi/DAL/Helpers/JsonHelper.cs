@@ -1,4 +1,4 @@
-﻿//// inspired by https://stackoverflow.com/a/58331912
+﻿// inspired by https://stackoverflow.com/a/58331912
 
 using System.Text.Json;
 
