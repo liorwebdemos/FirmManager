@@ -8,6 +8,7 @@ namespace WebApi.DAL.Helpers
     {
         public static readonly JsonSerializerOptions CustomJsonSerializerOptions = new()
         {
+
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
 
