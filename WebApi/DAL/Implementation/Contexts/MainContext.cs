@@ -5,20 +5,37 @@ namespace WebApi.DAL.Contexts
 {
     public class MainContext : DbContext
     {
-        //public readonly IConfiguration Configuration;
+        public MainContext(DbContextOptions<MainContext> options) : base(options) { }
 
-        public MainContext(DbContextOptions<MainContext> options) : base(options) //IConfiguration configuration
-        {
-            //Configuration = configuration;
-        }
+        public DbSet<DepartmentModel> Departments { get; set; } = null!; // "null!" as suggested @ https://stackoverflow.com/a/57343485
+        public DbSet<WorkerModel> Workers { get; set; } = null!;
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
-        //    optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=SchoolDB;Trusted_Connection=True;");
+        //    modelBuilder.Entity<Student>()
+        //        .ToTable("Student");
+        //    modelBuilder.Entity<Student>()
+        //        .Property(s => s.Age)
+        //        .IsRequired(false);
+        //    modelBuilder.Entity<Student>()
+        //        .Property(s => s.IsRegularStudent)
+        //        .HasDefaultValue(true);
+        //    modelBuilder.Entity<Student>()
+        //        .HasData(
+        //            new Student
+        //            {
+        //                Id = Guid.NewGuid(),
+        //                Name = "John Doe",
+        //                Age = 30
+        //            },
+        //            new Student
+        //            {
+        //                Id = Guid.NewGuid(),
+        //                Name = "Jane Doe",
+        //                Age = 25
+        //            }
+        //        );
         //}
-
-        public DbSet<DepartmentModel>? Departments { get; set; }
-        public DbSet<WorkerModel>? Workers { get; set; }
     }
 }
 
