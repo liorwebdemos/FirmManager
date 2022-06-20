@@ -18,10 +18,10 @@ namespace WebApi.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    InsertUser = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     InsertDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LastUpdateUser = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LastUpdateDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    InsertUserIp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastUpdateDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LastUpdateUserIp = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

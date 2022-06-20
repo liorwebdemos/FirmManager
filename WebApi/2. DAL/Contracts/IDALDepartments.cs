@@ -4,6 +4,6 @@ namespace WebApi.DAL.Contracts
 {
     public interface IDALDepartments
     {
-        IEnumerable<DepartmentModel>? GetDepartments();
+        IQueryable<DepartmentModel> GetAll();
     }
 }

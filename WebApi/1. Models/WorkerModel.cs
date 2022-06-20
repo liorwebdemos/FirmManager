@@ -34,6 +34,8 @@ namespace PopDb.Models
         public string? JobDescription { get; set; }
 
         /// <summary></summary>
+        /// https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#fully-defined-relationships
         public DepartmentModel? Department { get; set; }
+        public int? DepartmentId { get; set; }
     }
 }

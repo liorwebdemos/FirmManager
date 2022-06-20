@@ -13,9 +13,9 @@ namespace WebApi.BL.Implementation
             _dalDepartments = dalDepartments;
         }
 
-        public IEnumerable<DepartmentModel>? GetDepartments()
+        public IEnumerable<DepartmentModel> GetDepartments()
         {
-            return _dalDepartments.GetDepartments();
+            return _dalDepartments.GetAll().ToList();
         }
     }
 }

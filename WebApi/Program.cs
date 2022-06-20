@@ -3,7 +3,9 @@ using WebApi.BL.Contracts;
 using WebApi.BL.Implementation;
 using WebApi.DAL.Contexts;
 using WebApi.DAL.Contracts;
+using WebApi.DAL.Helpers;
 using WebApi.DAL.Implementation;
+using WebApi.DAL.Initializers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,8 @@ builder.Services.AddScoped<IBLDepartments, BLDepartments>();
 builder.Services.AddDbContext<MainContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("MainConnection"))
 );
+//TODO: dev only?? https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-6.0#add-the-database-exception-filter
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var AllowAllCors = "_allowAllCors";
 builder.Services.AddCors(
@@ -43,7 +47,6 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
     app.UseDeveloperExceptionPage();
     app.UseCors(AllowAllCors);
     app.UseSwagger();
@@ -67,5 +70,17 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// as soon as the applications starts,
+// 1. create the DB and apply migrations (if not already set up). (https://code-maze.com/migrations-and-seed-data-efcore/#setupinitialmigration; inspiration: https://stackoverflow.com/a/42356110)
+// 2. initialize the DB with seed data (if not already seeded).
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var mainContext = services.GetRequiredService<MainContext>();
+
+    mainContext.Database.Migrate();
+    mainContext.Initialize();
+}
 
 app.Run();

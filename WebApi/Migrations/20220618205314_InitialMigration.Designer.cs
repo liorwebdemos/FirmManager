@@ -12,7 +12,7 @@ using WebApi.DAL.Contexts;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20220618115325_InitialMigration")]
+    [Migration("20220618205314_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,8 +38,8 @@ namespace WebApi.Migrations
                     b.Property<DateTimeOffset?>("InsertDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTimeOffset?>("InsertUser")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<string>("InsertUserIp")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
@@ -47,8 +47,8 @@ namespace WebApi.Migrations
                     b.Property<DateTimeOffset?>("LastUpdateDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTimeOffset?>("LastUpdateUser")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<string>("LastUpdateUserIp")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

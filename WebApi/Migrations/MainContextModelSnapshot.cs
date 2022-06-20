@@ -36,8 +36,8 @@ namespace WebApi.Migrations
                     b.Property<DateTimeOffset?>("InsertDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTimeOffset?>("InsertUser")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<string>("InsertUserIp")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
@@ -45,8 +45,8 @@ namespace WebApi.Migrations
                     b.Property<DateTimeOffset?>("LastUpdateDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTimeOffset?>("LastUpdateUser")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<string>("LastUpdateUserIp")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
