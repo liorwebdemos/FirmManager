@@ -1,6 +1,6 @@
 {
-  "name": "ClientPages",
-  "description": "FirmManager Pages",
+  "name": "FirmManagerClientPages",
+  "description": "FirmManager Client Pages",
   "version": "0.1.0",
   "repository": {
     "type": "???",
