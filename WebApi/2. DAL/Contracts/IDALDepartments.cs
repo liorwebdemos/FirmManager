@@ -1,17 +1,17 @@
-﻿using PopDb.Models;
+﻿//using WebApi.Models;
 
-namespace WebApi.DAL.Contracts
-{
-    public interface IDALDepartments
-    {
-        void SaveChanges();
+//namespace WebApi.DAL.Contracts
+//{
+//    public interface IDALDepartments
+//    {
+//        void SaveChanges();
 
-        DepartmentModel? GetById(int departmentId);
+//        DepartmentModel? GetById(int departmentId);
 
-        IQueryable<DepartmentModel> GetAll();
+//        IQueryable<DepartmentModel> GetAll();
 
-        DepartmentModel Add(DepartmentModel department);
+//        DepartmentModel Add(DepartmentModel department);
 
-        DepartmentModel Delete(int departmentId);
-    }
-}
+//        DepartmentModel Delete(int departmentId);
+//    }
+//}

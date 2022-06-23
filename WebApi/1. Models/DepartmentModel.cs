@@ -1,7 +1,7 @@
-namespace PopDb.Models
+namespace WebApi.Models
 {
     /// <summary></summary>
-    public class DepartmentModel : TrackedModel
+    public class DepartmentModel : TrackedModel, IDbEntity
     {
         /// <summary></summary>
         public int Id { get; set; }

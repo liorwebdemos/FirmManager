@@ -24,7 +24,7 @@ namespace WebApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("PopDb.Models.DepartmentModel", b =>
+            modelBuilder.Entity("WebApi.Models.DepartmentModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace WebApi.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("PopDb.Models.WorkerModel", b =>
+            modelBuilder.Entity("WebApi.Models.WorkerModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,9 +97,9 @@ namespace WebApi.Migrations
                     b.ToTable("Workers");
                 });
 
-            modelBuilder.Entity("PopDb.Models.WorkerModel", b =>
+            modelBuilder.Entity("WebApi.Models.WorkerModel", b =>
                 {
-                    b.HasOne("PopDb.Models.DepartmentModel", null)
+                    b.HasOne("WebApi.Models.DepartmentModel", null)
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.SetNull);

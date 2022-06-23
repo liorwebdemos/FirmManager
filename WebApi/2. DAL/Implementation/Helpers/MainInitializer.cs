@@ -1,4 +1,4 @@
-﻿using PopDb.Models;
+﻿using WebApi.Models;
 using WebApi.DAL.Implementation.Contexts;
 
 namespace WebApi.DAL.Implementation.Initializers

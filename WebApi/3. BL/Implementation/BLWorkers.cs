@@ -1,45 +1,45 @@
-﻿using PopDb.Models;
-using WebApi.BL.Contracts;
+﻿using WebApi.BL.Contracts;
 using WebApi.DAL.Contracts;
+using WebApi.Models;
 
 namespace WebApi.BL.Implementation
 {
     public class BLWorkers : IBLWorkers
     {
-        private readonly IDALWorkers _dalWorkers;
+        private readonly IGenericRepo _genericRepo;
 
-        public BLWorkers(IDALWorkers dalWorkers)
+        public BLWorkers(IGenericRepo genericRepo)
         {
-            _dalWorkers = dalWorkers;
+            _genericRepo = genericRepo;
         }
 
         public WorkerModel? GetWorkerById(int workerId)
         {
-            return _dalWorkers.GetById(workerId);
+            return _genericRepo.GetById<WorkerModel>(workerId);
         }
 
         public IEnumerable<WorkerModel> GetWorkers()
         {
-            return _dalWorkers.GetAll().ToList();
+            return _genericRepo.GetAll<WorkerModel>().ToList();
         }
 
         public WorkerModel AddWorker(WorkerModel worker)
         {
-            _dalWorkers.Add(worker);
-            _dalWorkers.SaveChanges();
+            _genericRepo.Add(worker);
+            _genericRepo.SaveChanges();
             return worker;
         }
 
         public WorkerModel DeleteWorker(int workerId)
         {
-            WorkerModel toDelete = _dalWorkers.Delete(workerId);
-            _dalWorkers.SaveChanges();
+            WorkerModel toDelete = _genericRepo.Delete<WorkerModel>(workerId);
+            _genericRepo.SaveChanges();
             return toDelete;
         }
 
         public WorkerModel UpdateWorker(WorkerModel worker)
         {
-            WorkerModel? toUpdate = _dalWorkers.GetById(worker.Id);
+            WorkerModel? toUpdate = _genericRepo.GetById<WorkerModel>(worker.Id);
             if (toUpdate == null)
             {
                 throw new ArgumentException();
@@ -51,7 +51,7 @@ namespace WebApi.BL.Implementation
             toUpdate.Gender = worker.Gender;
             toUpdate.JobStartDate = worker.JobStartDate;
             toUpdate.JobEndDate = worker.JobEndDate;
-            _dalWorkers.SaveChanges();
+            _genericRepo.SaveChanges();
             return toUpdate;
         }
     }

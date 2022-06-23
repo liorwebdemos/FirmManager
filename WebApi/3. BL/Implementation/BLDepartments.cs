@@ -1,4 +1,4 @@
-﻿using PopDb.Models;
+﻿using WebApi.Models;
 using WebApi.BL.Contracts;
 using WebApi.DAL.Contracts;
 
@@ -6,40 +6,40 @@ namespace WebApi.BL.Implementation
 {
     public class BLDepartments : IBLDepartments
     {
-        private readonly IDALDepartments _dalDepartments;
+        private readonly IGenericRepo _genericRepo;
 
-        public BLDepartments(IDALDepartments dalDepartments)
+        public BLDepartments(IGenericRepo genericRepo)
         {
-            _dalDepartments = dalDepartments;
+            _genericRepo = genericRepo;
         }
 
         public DepartmentModel? GetDepartmentById(int departmentId)
         {
-            return _dalDepartments.GetById(departmentId);
+            return _genericRepo.GetById<DepartmentModel>(departmentId);
         }
 
         public IEnumerable<DepartmentModel> GetDepartments()
         {
-            return _dalDepartments.GetAll().ToList();
+            return _genericRepo.GetAll<DepartmentModel>().ToList();
         }
 
         public DepartmentModel AddDepartment(DepartmentModel department)
         {
-            _dalDepartments.Add(department);
-            _dalDepartments.SaveChanges();
+            _genericRepo.Add(department);
+            _genericRepo.SaveChanges();
             return department;
         }
 
         public DepartmentModel DeleteDepartment(int departmentId)
         {
-            DepartmentModel toDelete = _dalDepartments.Delete(departmentId);
-            _dalDepartments.SaveChanges();
+            DepartmentModel toDelete = _genericRepo.Delete<DepartmentModel>(departmentId);
+            _genericRepo.SaveChanges();
             return toDelete;
         }
 
         public DepartmentModel UpdateDepartment(DepartmentModel department)
         {
-            DepartmentModel? toUpdate = _dalDepartments.GetById(department.Id);
+            DepartmentModel? toUpdate = _genericRepo.GetById<DepartmentModel>(department.Id);
             if (toUpdate == null)
             {
                 throw new ArgumentException();
@@ -48,7 +48,7 @@ namespace WebApi.BL.Implementation
             toUpdate.Title = department.Title;
             toUpdate.Description = department.Description;
             toUpdate.IsActive = department.IsActive;
-            _dalDepartments.SaveChanges();
+            _genericRepo.SaveChanges();
             return toUpdate;
         }
     }

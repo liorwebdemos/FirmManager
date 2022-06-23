@@ -1,4 +1,4 @@
-namespace PopDb.Models
+namespace WebApi.Models
 {
     public enum Gender // not the best of practices to start at 1
     {
@@ -7,7 +7,7 @@ namespace PopDb.Models
     }
 
     /// <summary></summary>
-    public class WorkerModel
+    public class WorkerModel : IDbEntity
     {
         /// <summary></summary>
         public int Id { get; set; }

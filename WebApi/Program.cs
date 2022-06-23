@@ -17,8 +17,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add DALs
-builder.Services.AddScoped<IDALDepartments, DALDepartments>();
-builder.Services.AddScoped<IDALWorkers, DALWorkers>();
+//builder.Services.AddScoped<IDALDepartments, DALDepartments>();
+//builder.Services.AddScoped<IDALWorkers, DALWorkers>();
+builder.Services.AddScoped<IGenericRepo, GenericRepo>();
 
 // Add BLs
 builder.Services.AddScoped<IBLDepartments, BLDepartments>();

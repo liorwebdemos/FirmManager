@@ -1,17 +1,17 @@
-﻿using PopDb.Models;
+﻿//using WebApi.Models;
 
-namespace WebApi.DAL.Contracts
-{
-    public interface IDALWorkers
-    {
-        void SaveChanges();
+//namespace WebApi.DAL.Contracts
+//{
+//    public interface IDALWorkers
+//    {
+//        void SaveChanges();
 
-        WorkerModel? GetById(int workerId);
+//        WorkerModel? GetById(int workerId);
 
-        IQueryable<WorkerModel> GetAll();
+//        IQueryable<WorkerModel> GetAll();
 
-        WorkerModel Add(WorkerModel worker);
+//        WorkerModel Add(WorkerModel worker);
 
-        WorkerModel Delete(int workerId);
-    }
-}
+//        WorkerModel Delete(int workerId);
+//    }
+//}

@@ -9,7 +9,7 @@ export class App
   // Note: a router is obviously redundant in this simple, simple app. it's just here for demonstration sake.
   public configureRouter(config: RouterConfiguration, router: Router): void
   {
-    config.title = "PopDb";
+    config.title = "FirmManager";
     config.map([
       {
         route: "",

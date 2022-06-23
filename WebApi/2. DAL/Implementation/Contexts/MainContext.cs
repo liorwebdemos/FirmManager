@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PopDb.Models;
+using WebApi.Models;
 
 namespace WebApi.DAL.Implementation.Contexts
 {

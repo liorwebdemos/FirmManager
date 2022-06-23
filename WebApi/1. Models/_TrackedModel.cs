@@ -1,4 +1,4 @@
-namespace PopDb.Models
+namespace WebApi.Models
 {
     public abstract class TrackedModel
     {

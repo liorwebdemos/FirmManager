@@ -1,4 +1,4 @@
-﻿using PopDb.Models;
+﻿using WebApi.Models;
 
 namespace WebApi.BL.Contracts
 {

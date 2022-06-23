@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using PopDb.Models;
+using WebApi.Models;
 using WebApi.BL.Contracts;
 
-namespace PopDb.Controllers
+namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
