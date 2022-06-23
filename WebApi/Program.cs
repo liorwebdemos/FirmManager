@@ -31,6 +31,8 @@ builder.Services.AddDbContext<MainContext>(
 //TODO: dev only?? https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-6.0#add-the-database-exception-filter
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddHttpContextAccessor();
+
 var AllowAllCors = "_allowAllCors";
 builder.Services.AddCors(
     options => options.AddPolicy(

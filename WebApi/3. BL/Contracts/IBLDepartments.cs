@@ -7,5 +7,7 @@ namespace WebApi.BL.Contracts
         DepartmentModel? GetDepartmentById(int departmentId);
 
         IEnumerable<DepartmentModel> GetDepartments();
+
+        DepartmentModel AddDepartment(DepartmentModel department);
     }
 }

@@ -4,23 +4,28 @@ using WebApi.DAL.Contracts;
 
 namespace WebApi.BL.Implementation
 {
-    public class BLWorkers : IBLWorkers
+    public class BLDepartments : IBLDepartments
     {
-        private readonly IDALWorkers _dalWorkers;
+        private readonly IDALDepartments _dalDepartments;
 
-        public BLWorkers(IDALWorkers dalWorkers)
+        public BLDepartments(IDALDepartments dalDepartments)
         {
-            _dalWorkers = dalWorkers;
+            _dalDepartments = dalDepartments;
         }
 
-        public WorkerModel? GetWorkerById(int departmentId)
+        public DepartmentModel? GetDepartmentById(int departmentId)
         {
-            return _dalWorkers.GetById(departmentId);
+            return _dalDepartments.GetById(departmentId);
         }
 
-        public IEnumerable<WorkerModel> GetWorkers()
+        public IEnumerable<DepartmentModel> GetDepartments()
         {
-            return _dalWorkers.GetAll().ToList();
+            return _dalDepartments.GetAll().ToList();
+        }
+
+        public DepartmentModel AddDepartment(DepartmentModel department)
+        {
+            return _dalDepartments.Add(department);
         }
     }
 }

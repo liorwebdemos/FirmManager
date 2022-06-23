@@ -27,11 +27,11 @@ namespace PopDb.Controllers
             return _blMovies.GetDepartmentById(departmentId);
         }
 
-        //[HttpPut("{departmentId}")]
-        //public DepartmentModel AddDepartment([FromBody] DepartmentModel department)
-        //{
-        //    return _blMovies.AddDepartment(departmentId);
-        //}
+        [HttpPost("")]
+        public DepartmentModel AddDepartment([FromBody] DepartmentModel department)
+        {
+            return _blMovies.AddDepartment(department);
+        }
 
         //[HttpPut("{departmentId}")]
         //public DepartmentModel UpdateDepartmentById(int departmentId)
@@ -39,6 +39,7 @@ namespace PopDb.Controllers
         //    return _blMovies.GetDepartmentById(departmentId);
         //}
 
+        //https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete
         //[HttpDelete("{departmentId}")]
         //public DepartmentModel DeleteDepartmentById(int departmentId)
         //{

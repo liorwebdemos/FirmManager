@@ -7,5 +7,7 @@ namespace WebApi.DAL.Contracts
         DepartmentModel? GetById(int departmentId);
 
         IQueryable<DepartmentModel> GetAll();
+
+        DepartmentModel Add(DepartmentModel department);
     }
 }

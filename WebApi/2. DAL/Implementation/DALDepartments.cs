@@ -29,5 +29,12 @@ namespace WebApi.DAL.Implementation
         {
             return _mainContext.Departments.AsNoTracking(); // tracking is expensive
         }
+
+        public DepartmentModel Add(DepartmentModel department)
+        {
+            _mainContext.Departments.Add(department);
+            _mainContext.SaveChanges();
+            return department;
+        }
     }
 }

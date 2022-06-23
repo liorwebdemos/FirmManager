@@ -30,25 +30,25 @@ namespace WebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("InsertDate")
+                    b.Property<DateTimeOffset?>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("InsertUserIp")
+                    b.Property<string>("CreatedUserIp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<DateTimeOffset?>("LastUpdateDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("LastUpdateUserIp")
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<DateTimeOffset?>("UpdatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("UpdatedUserIp")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -97,16 +97,9 @@ namespace WebApi.Migrations
 
             modelBuilder.Entity("PopDb.Models.WorkerModel", b =>
                 {
-                    b.HasOne("PopDb.Models.DepartmentModel", "Department")
-                        .WithMany("Workers")
+                    b.HasOne("PopDb.Models.DepartmentModel", null)
+                        .WithMany()
                         .HasForeignKey("DepartmentId");
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("PopDb.Models.DepartmentModel", b =>
-                {
-                    b.Navigation("Workers");
                 });
 #pragma warning restore 612, 618
         }
