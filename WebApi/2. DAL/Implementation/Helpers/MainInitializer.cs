@@ -1,7 +1,7 @@
 ﻿using PopDb.Models;
-using WebApi.DAL.Contexts;
+using WebApi.DAL.Implementation.Contexts;
 
-namespace WebApi.DAL.Initializers
+namespace WebApi.DAL.Implementation.Initializers
 {
     // https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding#custom-initialization-logic, https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-6.0#initialize-db-with-test-data
     public static class MainInitializer

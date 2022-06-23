@@ -9,5 +9,9 @@ namespace WebApi.BL.Contracts
         IEnumerable<DepartmentModel> GetDepartments();
 
         DepartmentModel AddDepartment(DepartmentModel department);
+
+        DepartmentModel DeleteDepartment(int departmentId);
+
+        DepartmentModel UpdateDepartment(DepartmentModel department);
     }
 }

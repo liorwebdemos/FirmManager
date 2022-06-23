@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PopDb.Models;
 
-namespace WebApi.DAL.Contexts
+namespace WebApi.DAL.Implementation.Contexts
 {
     public class MainContext : DbContext
     {
@@ -28,16 +28,25 @@ namespace WebApi.DAL.Contexts
             modelBuilder.Entity<WorkerModel>()
                 .HasOne<DepartmentModel>()
                 .WithMany()
+                .OnDelete(DeleteBehavior.SetNull) // cascading behavior (https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete#configuring-cascading-behaviors)
                 .HasForeignKey(t => t.DepartmentId); // optional relationship (https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#required-and-optional-relationships)
 
+            //modelBuilder.ApplyConfiguration(new TrackedModelConfiguration<DepartmentModel>()); // useful but not actually needed for this specific use case we're overriding SaveChanges(). also, in theory, we'd automatically get all the classes that derive from TrackedModel instead of having to list the one by one
+
+            base.OnModelCreating(modelBuilder);
         }
 
-        // automatically set some properties (https://www.entityframeworktutorial.net/faq/set-created-and-modified-date-in-efcore.aspx)
         public override int SaveChanges()
+        {
+            return OnSaveHandleTrackedModels();
+        }
+
+        // https://www.entityframeworktutorial.net/faq/set-created-and-modified-date-in-efcore.aspx
+        private int OnSaveHandleTrackedModels()
         {
             var entries = ChangeTracker
                 .Entries()
-                .Where(e => e.Entity is DateAndUserIpTracked
+                .Where(e => e.Entity is TrackedModel
                        && (e.State == EntityState.Added || e.State == EntityState.Modified));
 
             if (!entries.Any()) return base.SaveChanges();
@@ -47,13 +56,13 @@ namespace WebApi.DAL.Contexts
 
             foreach (var entityEntry in entries)
             {
-                ((DateAndUserIpTracked)entityEntry.Entity).UpdatedDate = now;
-                ((DateAndUserIpTracked)entityEntry.Entity).UpdatedUserIp = remoteIpAddress;
+                ((TrackedModel)entityEntry.Entity).UpdatedDate = now;
+                ((TrackedModel)entityEntry.Entity).UpdatedUserIp = remoteIpAddress;
 
                 if (entityEntry.State == EntityState.Added)
                 {
-                    ((DateAndUserIpTracked)entityEntry.Entity).CreatedDate = now;
-                    ((DateAndUserIpTracked)entityEntry.Entity).CreatedUserIp = remoteIpAddress;
+                    ((TrackedModel)entityEntry.Entity).CreatedDate = now;
+                    ((TrackedModel)entityEntry.Entity).CreatedUserIp = remoteIpAddress;
                 }
             }
 

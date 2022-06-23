@@ -16,7 +16,7 @@ namespace PopDb.Controllers
         }
 
         [HttpGet("")]
-        public IEnumerable<DepartmentModel>? GetDepartments()
+        public IEnumerable<DepartmentModel> GetDepartments()
         {
             return _blMovies.GetDepartments();
         }
@@ -33,17 +33,16 @@ namespace PopDb.Controllers
             return _blMovies.AddDepartment(department);
         }
 
-        //[HttpPut("{departmentId}")]
-        //public DepartmentModel UpdateDepartmentById(int departmentId)
-        //{
-        //    return _blMovies.GetDepartmentById(departmentId);
-        //}
+        [HttpPut("")] // there's also REST convention of {departmentId}
+        public DepartmentModel UpdateDepartment([FromBody] DepartmentModel department)
+        {
+            return _blMovies.UpdateDepartment(department);
+        }
 
-        //https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete
-        //[HttpDelete("{departmentId}")]
-        //public DepartmentModel DeleteDepartmentById(int departmentId)
-        //{
-        //    return _blMovies.GetDepartmentById(departmentId);
-        //}
+        [HttpDelete("")]
+        public DepartmentModel DeleteDepartment(int departmentId)
+        {
+            return _blMovies.DeleteDepartment(departmentId);
+        }
     }
 }

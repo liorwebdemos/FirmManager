@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApi.DAL.Contexts;
+using WebApi.DAL.Implementation.Contexts;
 
 #nullable disable
 
 namespace WebApi.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20220623090141_Initial")]
+    [Migration("20220623102558_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,7 +101,8 @@ namespace WebApi.Migrations
                 {
                     b.HasOne("PopDb.Models.DepartmentModel", null)
                         .WithMany()
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using WebApi.BL.Contracts;
 using WebApi.BL.Implementation;
-using WebApi.DAL.Contexts;
 using WebApi.DAL.Contracts;
 using WebApi.DAL.Helpers;
 using WebApi.DAL.Implementation;
-using WebApi.DAL.Initializers;
+using WebApi.DAL.Implementation.Contexts;
+using WebApi.DAL.Implementation.Initializers;
 
 var builder = WebApplication.CreateBuilder(args);
 

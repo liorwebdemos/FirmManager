@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApi.DAL.Contexts;
+using WebApi.DAL.Implementation.Contexts;
 
 #nullable disable
 
@@ -99,7 +99,8 @@ namespace WebApi.Migrations
                 {
                     b.HasOne("PopDb.Models.DepartmentModel", null)
                         .WithMany()
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

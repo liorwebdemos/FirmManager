@@ -1,7 +1,7 @@
 namespace PopDb.Models
 {
     /// <summary></summary>
-    public class DepartmentModel : DateAndUserIpTracked
+    public class DepartmentModel : TrackedModel
     {
         /// <summary></summary>
         public int Id { get; set; }

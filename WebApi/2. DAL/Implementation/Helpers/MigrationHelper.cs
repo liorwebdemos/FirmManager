@@ -1,7 +1,7 @@
 ﻿//using Microsoft.EntityFrameworkCore;
 //using WebApi.DAL.Contexts;
 
-//namespace WebApi.DAL.Helpers
+//namespace WebApi.DAL.Implementation.Helpers
 //{
 //    public static class MigrationHelper
 //    {

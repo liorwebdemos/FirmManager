@@ -1,6 +1,6 @@
 namespace PopDb.Models
 {
-    public abstract class DateAndUserIpTracked
+    public abstract class TrackedModel
     {
         /// <summary></summary>
         public DateTimeOffset? CreatedDate { get; set; }
