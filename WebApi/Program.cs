@@ -18,9 +18,11 @@ builder.Services.AddSwaggerGen();
 
 // Add DALs
 builder.Services.AddScoped<IDALDepartments, DALDepartments>();
+builder.Services.AddScoped<IDALWorkers, DALWorkers>();
 
 // Add BLs
 builder.Services.AddScoped<IBLDepartments, BLDepartments>();
+builder.Services.AddScoped<IBLWorkers, BLWorkers>();
 
 // DB stuff
 builder.Services.AddDbContext<MainContext>(

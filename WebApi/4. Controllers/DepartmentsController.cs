@@ -10,7 +10,7 @@ namespace PopDb.Controllers
     {
         private readonly IBLDepartments _blMovies;
 
-        public DepartmentsController(IBLDepartments blMovies) 
+        public DepartmentsController(IBLDepartments blMovies)
         {
             _blMovies = blMovies;
         }
@@ -20,5 +20,29 @@ namespace PopDb.Controllers
         {
             return _blMovies.GetDepartments();
         }
+
+        [HttpGet("{departmentId}")]
+        public DepartmentModel? GetDepartmentById(int departmentId)
+        {
+            return _blMovies.GetDepartmentById(departmentId);
+        }
+
+        //[HttpPut("{departmentId}")]
+        //public DepartmentModel AddDepartment([FromBody] DepartmentModel department)
+        //{
+        //    return _blMovies.AddDepartment(departmentId);
+        //}
+
+        //[HttpPut("{departmentId}")]
+        //public DepartmentModel UpdateDepartmentById(int departmentId)
+        //{
+        //    return _blMovies.GetDepartmentById(departmentId);
+        //}
+
+        //[HttpDelete("{departmentId}")]
+        //public DepartmentModel DeleteDepartmentById(int departmentId)
+        //{
+        //    return _blMovies.GetDepartmentById(departmentId);
+        //}
     }
 }

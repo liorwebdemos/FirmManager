@@ -22,7 +22,7 @@ export class MoviesService
   {
     return this.httpClient.get("movies/popular")
       .then(response => response.json())
-      .then((response: MovieModel[]) => plainToInstance(MovieModel, response)); // not actually needed here, since we don't have properties with date type on the movie model. it is ultimately needed, though, in almost every serious project
+      .then((response: MovieModel[]) => plainToInstance(MovieModel, response));
   }
 
   // @cache() -> do client cache
@@ -30,6 +30,6 @@ export class MoviesService
   {
     return this.httpClient.get(`movies?keyword=${ keyword }`) // better yet: this.advancedHttpClient.queryString("movies", { keyword }) which auto-formats any querystring
       .then(response => response.json())
-      .then((response: MovieModel[]) => plainToInstance(MovieModel, response)); // not actually needed here, since we don't have properties with date type on the movie model. it is ultimately needed, though, in almost every serious project
+      .then((response: MovieModel[]) => plainToInstance(MovieModel, response));
   }
 }

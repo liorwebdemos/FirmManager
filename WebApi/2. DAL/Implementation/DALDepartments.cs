@@ -1,4 +1,5 @@
-﻿using PopDb.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PopDb.Models;
 using WebApi.DAL.Contexts;
 using WebApi.DAL.Contracts;
 
@@ -19,9 +20,14 @@ namespace WebApi.DAL.Implementation
             _mainContext = mainContext;
         }
 
+        public DepartmentModel? GetById(int departmentId)
+        {
+            return _mainContext.Departments.FirstOrDefault(d => d.Id == departmentId);
+        }
+
         public IQueryable<DepartmentModel> GetAll()
         {
-            return _mainContext.Departments;
+            return _mainContext.Departments.AsNoTracking(); // tracking is expensive
         }
     }
 }
