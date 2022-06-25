@@ -6,18 +6,24 @@ export class App
 {
   public router: Router;
 
-  // Note: a router is obviously redundant in this simple, simple app. it's just here for demonstration sake.
   public configureRouter(config: RouterConfiguration, router: Router): void
   {
     config.title = "FirmManager";
     config.map([
       {
         route: "",
-        name: "front-page",
-        moduleId: PLATFORM.moduleName("./components/front-page/front-page"),
+        name: "departments-list",
+        moduleId: PLATFORM.moduleName("./components/departments-list/departments-list"),
         nav: true,
-        title: "Front Page"
+        title: "Departments List"
       }
+      // {
+      //   route: "workers",
+      //   name: "workers-list",
+      //   moduleId: PLATFORM.moduleName("./components/workers-list/workers-list"),
+      //   nav: true,
+      //   title: "Workers List"
+      // }
     ]);
 
     this.router = router;

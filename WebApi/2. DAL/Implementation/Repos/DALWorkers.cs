@@ -3,7 +3,7 @@
 //using WebApi.DAL.Implementation.Contexts;
 //using WebApi.Models;
 
-//namespace WebApi.DAL.Implementation
+//namespace WebApi.DAL.Repos.Implementation
 //{
 //    public class DALWorkers : IDALWorkers
 //    {

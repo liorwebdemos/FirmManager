@@ -4,9 +4,9 @@ namespace WebApi.BL.Contracts
 {
     public interface IBLDepartments
     {
-        DepartmentModel? GetDepartmentById(int departmentId);
+        DepartmentModel? GetDepartmentById(int departmentId, bool isWithWorkers);
 
-        IEnumerable<DepartmentModel> GetDepartments();
+        IEnumerable<DepartmentModel> GetDepartments(bool isWithWorkers);
 
         DepartmentModel AddDepartment(DepartmentModel department);
 

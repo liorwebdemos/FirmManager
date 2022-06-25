@@ -35,5 +35,8 @@ namespace WebApi.Models
 
         /// <summary></summary>
         public int? DepartmentId { get; set; }
+
+        /// <summary></summary>
+        public DepartmentModel? Department { get; set; }
     }
 }

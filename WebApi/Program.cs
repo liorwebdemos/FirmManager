@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using WebApi.BL.Contracts;
 using WebApi.BL.Implementation;
 using WebApi.DAL.Contracts;
@@ -6,12 +7,15 @@ using WebApi.DAL.Helpers;
 using WebApi.DAL.Implementation;
 using WebApi.DAL.Implementation.Contexts;
 using WebApi.DAL.Implementation.Initializers;
+using WebApi.DAL.Repos.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore); // https://stackoverflow.com/a/59807536
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,6 +24,7 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddScoped<IDALDepartments, DALDepartments>();
 //builder.Services.AddScoped<IDALWorkers, DALWorkers>();
 builder.Services.AddScoped<IGenericRepo, GenericRepo>();
+builder.Services.AddScoped<IDepartmentsRepo, DepartmentsRepo>();
 
 // Add BLs
 builder.Services.AddScoped<IBLDepartments, BLDepartments>();
@@ -57,6 +62,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseHttpLogging();
+    //app.UseBrowserLink();
 }
 
 //app.Use(async (context, next) =>

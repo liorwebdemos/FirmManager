@@ -12,7 +12,7 @@ using WebApi.DAL.Implementation.Contexts;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20220623102558_Initial")]
+    [Migration("20220624101302_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,17 +92,7 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentId");
-
                     b.ToTable("Workers");
-                });
-
-            modelBuilder.Entity("WebApi.Models.WorkerModel", b =>
-                {
-                    b.HasOne("WebApi.Models.DepartmentModel", null)
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

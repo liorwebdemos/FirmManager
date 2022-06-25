@@ -6,40 +6,45 @@ namespace WebApi.BL.Implementation
 {
     public class BLDepartments : IBLDepartments
     {
-        private readonly IGenericRepo _genericRepo;
+        private readonly IDepartmentsRepo _departmentsRepo;
 
-        public BLDepartments(IGenericRepo genericRepo)
+        public BLDepartments(IDepartmentsRepo departmentsRepo)
         {
-            _genericRepo = genericRepo;
+            _departmentsRepo = departmentsRepo;
         }
 
-        public DepartmentModel? GetDepartmentById(int departmentId)
+        public DepartmentModel? GetDepartmentById(int departmentId, bool isWithWorkers)
         {
-            return _genericRepo.GetById<DepartmentModel>(departmentId);
+            return isWithWorkers
+                ? _departmentsRepo.GetByIdWithWorkers(departmentId)
+                : _departmentsRepo.GetById<DepartmentModel>(departmentId);
         }
 
-        public IEnumerable<DepartmentModel> GetDepartments()
+        public IEnumerable<DepartmentModel> GetDepartments(bool isWithWorkers)
         {
-            return _genericRepo.GetAll<DepartmentModel>().ToList();
+            return (isWithWorkers
+                ? _departmentsRepo.GetAllWithWorkers()
+                : _departmentsRepo.GetAll<DepartmentModel>())
+                .ToList();
         }
 
         public DepartmentModel AddDepartment(DepartmentModel department)
         {
-            _genericRepo.Add(department);
-            _genericRepo.SaveChanges();
+            _departmentsRepo.Add(department);
+            _departmentsRepo.SaveChanges();
             return department;
         }
 
         public DepartmentModel DeleteDepartment(int departmentId)
         {
-            DepartmentModel toDelete = _genericRepo.Delete<DepartmentModel>(departmentId);
-            _genericRepo.SaveChanges();
+            DepartmentModel toDelete = _departmentsRepo.Delete<DepartmentModel>(departmentId);
+            _departmentsRepo.SaveChanges();
             return toDelete;
         }
 
         public DepartmentModel UpdateDepartment(DepartmentModel department)
         {
-            DepartmentModel? toUpdate = _genericRepo.GetById<DepartmentModel>(department.Id);
+            DepartmentModel? toUpdate = _departmentsRepo.GetById<DepartmentModel>(department.Id);
             if (toUpdate == null)
             {
                 throw new ArgumentException();
@@ -48,7 +53,7 @@ namespace WebApi.BL.Implementation
             toUpdate.Title = department.Title;
             toUpdate.Description = department.Description;
             toUpdate.IsActive = department.IsActive;
-            _genericRepo.SaveChanges();
+            _departmentsRepo.SaveChanges();
             return toUpdate;
         }
     }

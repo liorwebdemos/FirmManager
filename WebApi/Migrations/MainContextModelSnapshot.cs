@@ -90,17 +90,7 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentId");
-
                     b.ToTable("Workers");
-                });
-
-            modelBuilder.Entity("WebApi.Models.WorkerModel", b =>
-                {
-                    b.HasOne("WebApi.Models.DepartmentModel", null)
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

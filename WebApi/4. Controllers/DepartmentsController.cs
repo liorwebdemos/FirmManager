@@ -16,15 +16,15 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("")]
-        public IEnumerable<DepartmentModel> GetDepartments()
+        public IEnumerable<DepartmentModel> GetDepartments(bool isWithWorkers = false)
         {
-            return _blMovies.GetDepartments();
+            return _blMovies.GetDepartments(isWithWorkers);
         }
 
         [HttpGet("{departmentId}")]
-        public DepartmentModel? GetDepartmentById(int departmentId)
+        public DepartmentModel? GetDepartmentById(int departmentId, bool isWithWorkers = false)
         {
-            return _blMovies.GetDepartmentById(departmentId);
+            return _blMovies.GetDepartmentById(departmentId, isWithWorkers);
         }
 
         [HttpPost("")]
@@ -40,7 +40,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("")]
-        public DepartmentModel DeleteDepartment(int departmentId)
+        public DepartmentModel DeleteDepartment(int departmentId) // can add parameter shouldDeleteWorkers to state whether or not associated workers should be disassociated (their FK set to null) or deleted too
         {
             return _blMovies.DeleteDepartment(departmentId);
         }
