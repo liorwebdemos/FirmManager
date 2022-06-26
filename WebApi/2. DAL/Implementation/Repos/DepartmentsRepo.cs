@@ -35,7 +35,6 @@ namespace WebApi.DAL.Repos.Implementation
             //without attaching its workers too, it won't cascade (and the delete will actually fail because it'll collide with the FK in the DB)
 
             DepartmentModel? toDelete = GetByIdWithWorkers(departmentId);
-            Console.WriteLine(_mainContext.ChangeTracker.DebugView.LongView);
             if (toDelete == default)
             {
                 throw new ArgumentException();
