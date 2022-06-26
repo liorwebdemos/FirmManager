@@ -7,12 +7,10 @@ namespace WebApi.BL.Implementation
     public class BLWorkers : IBLWorkers
     {
         private readonly IGenericRepo _genericRepo;
-        private readonly IDepartmentsRepo _departmentsRepo;
 
-        public BLWorkers(IGenericRepo genericRepo, IDepartmentsRepo departmentsRepo)
+        public BLWorkers(IGenericRepo genericRepo)
         {
             _genericRepo = genericRepo;
-            _departmentsRepo = departmentsRepo;
         }
 
         public WorkerModel? GetWorkerById(int workerId)

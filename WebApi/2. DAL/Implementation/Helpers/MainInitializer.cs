@@ -15,18 +15,33 @@ namespace WebApi.DAL.Implementation.Initializers
                 return; 
             }
 
-            mainContext.Add(GetDepartmentSeed());
+            mainContext.AddRange(GetDepartmentSeed());
             mainContext.AddRange(GetWorkersSeed());
             mainContext.SaveChanges();
         }
 
-        public static DepartmentModel GetDepartmentSeed() // non-explicit return type to allow future changes with ease
+        public static List<DepartmentModel> GetDepartmentSeed() // non-explicit return type to allow future changes with ease
         {
-            return new DepartmentModel()
+            return new List<DepartmentModel>()
             {
-                Title = "Superheros & Villains",
-                Description = "Some clever description.",
-                IsActive = true
+                new()
+                {
+                    Title = "Superheros",
+                    Description = "Somekind of clever description.",
+                    IsActive = true
+                },
+                new()
+                {
+                    Title = "Villains",
+                    Description = "Another clever description.",
+                    IsActive = true
+                },
+                new()
+                {
+                    Title = "Regular Folks",
+                    Description = "Yet another clever description.",
+                    IsActive = true
+                }
             };
         }
 
@@ -35,7 +50,7 @@ namespace WebApi.DAL.Implementation.Initializers
             DateTimeOffset now = DateTimeOffset.Now;
             return new List<WorkerModel>()
             {
-                new WorkerModel()
+                new()
                 {
                     IsraeliIdentityNumber = 123456789,
                     FirstName = "Wonder",
@@ -43,10 +58,21 @@ namespace WebApi.DAL.Implementation.Initializers
                     Gender = Gender.Female,
                     JobStartDate = now,
                     JobEndDate = now.AddYears(2),
-                    JobDescription = "Superhero",
+                    JobDescription = "Saving earth",
                     DepartmentId = 1
                 },
-                new WorkerModel()
+                new()
+                {
+                    IsraeliIdentityNumber = 123456789,
+                    FirstName = "Spider",
+                    LastName = "Man",
+                    Gender = Gender.Male,
+                    JobStartDate = null,
+                    JobEndDate = null,
+                    JobDescription = "Your friendly neighborhood superhero",
+                    DepartmentId = 1
+                },
+                new()
                 {
                     IsraeliIdentityNumber = 987654321,
                     FirstName = "Thanos",
@@ -54,8 +80,41 @@ namespace WebApi.DAL.Implementation.Initializers
                     Gender = Gender.Male,
                     JobStartDate = now,
                     JobEndDate = now.AddYears(5),
-                    JobDescription = "Villain",
-                    DepartmentId = 1
+                    JobDescription = null,
+                    DepartmentId = 2
+                },
+                new()
+                {
+                    IsraeliIdentityNumber = 987654321,
+                    FirstName = "Bane",
+                    LastName = "",
+                    Gender = Gender.Male,
+                    JobStartDate = now,
+                    JobEndDate = now.AddYears(5),
+                    JobDescription = null,
+                    DepartmentId = 2
+                },
+                new()
+                {
+                    IsraeliIdentityNumber = null,
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Gender = Gender.Male,
+                    JobStartDate = now,
+                    JobEndDate = now.AddYears(5),
+                    JobDescription = null,
+                    DepartmentId = 3
+                },
+                new()
+                {
+                    IsraeliIdentityNumber = null,
+                    FirstName = "Jane",
+                    LastName = "Doe",
+                    Gender = Gender.Female,
+                    JobStartDate = now,
+                    JobEndDate = now.AddYears(5),
+                    JobDescription = null,
+                    DepartmentId = 3
                 }
             };
         }

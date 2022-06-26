@@ -16,6 +16,6 @@ namespace WebApi.Models
         public bool? IsActive { get; set; }
 
         /// <summary></summary>
-        public List<WorkerModel> Workers { get; set; } = null!;
+        public virtual List<WorkerModel> Workers { get; set; } = null!;
     }
 }

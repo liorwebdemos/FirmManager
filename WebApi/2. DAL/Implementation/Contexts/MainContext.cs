@@ -48,9 +48,10 @@ namespace WebApi.DAL.Implementation.Contexts
             //    .IsRequired(false);
 
             modelBuilder.Entity<WorkerModel>()
-                .HasOne<DepartmentModel>()
-                .WithMany()
+                .HasOne(t => t.Department)
+                .WithMany(t => t.Workers)
                 .IsRequired(false)
+                .HasForeignKey(t => t.DepartmentId)
                 .OnDelete(DeleteBehavior.SetNull); // cascade delete behavior (https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete#configuring-cascading-behaviors)
 
             base.OnModelCreating(modelBuilder);

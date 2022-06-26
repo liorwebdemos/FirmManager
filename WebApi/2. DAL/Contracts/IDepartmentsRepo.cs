@@ -4,7 +4,7 @@ namespace WebApi.DAL.Contracts
 {
     public interface IDepartmentsRepo : IGenericRepo
     {
-        DepartmentModel? GetByIdWithWorkers(int entityId);
+        DepartmentModel? GetByIdWithWorkers(int departmentId);
 
         IQueryable<DepartmentModel> GetAllWithWorkers();
     }

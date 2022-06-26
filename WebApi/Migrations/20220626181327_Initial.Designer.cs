@@ -12,7 +12,7 @@ using WebApi.DAL.Implementation.Contexts;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20220625203503_Initial")]
+    [Migration("20220626181327_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,9 +69,6 @@ namespace WebApi.Migrations
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartmentModelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -97,8 +94,6 @@ namespace WebApi.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("DepartmentModelId");
-
                     b.ToTable("Workers");
                 });
 
@@ -106,11 +101,7 @@ namespace WebApi.Migrations
                 {
                     b.HasOne("WebApi.Models.DepartmentModel", "Department")
                         .WithMany("Workers")
-                        .HasForeignKey("DepartmentId");
-
-                    b.HasOne("WebApi.Models.DepartmentModel", null)
-                        .WithMany()
-                        .HasForeignKey("DepartmentModelId")
+                        .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Department");

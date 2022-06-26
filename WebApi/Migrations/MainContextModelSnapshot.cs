@@ -67,9 +67,6 @@ namespace WebApi.Migrations
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartmentModelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -95,8 +92,6 @@ namespace WebApi.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("DepartmentModelId");
-
                     b.ToTable("Workers");
                 });
 
@@ -104,11 +99,7 @@ namespace WebApi.Migrations
                 {
                     b.HasOne("WebApi.Models.DepartmentModel", "Department")
                         .WithMany("Workers")
-                        .HasForeignKey("DepartmentId");
-
-                    b.HasOne("WebApi.Models.DepartmentModel", null)
-                        .WithMany()
-                        .HasForeignKey("DepartmentModelId")
+                        .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Department");

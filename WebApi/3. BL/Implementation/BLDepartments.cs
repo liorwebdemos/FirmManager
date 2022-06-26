@@ -60,13 +60,6 @@ namespace WebApi.BL.Implementation
 
             _departmentsRepo.SaveChanges();
             return toUpdate;
-
-            // https://stackoverflow.com/a/27177623
-            // https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/update-related-data?view=aspnetcore-6.0#update-the-instructors-controller-1
-            // https://www.learnentityframeworkcore.com/dbset/modifying-data + https://www.mikesdotnetting.com/article/303/entity-framework-core-trackgraph-for-disconnected-data
-            // https://stackoverflow.com/a/55190929
-            // https://stackoverflow.com/a/33059565 + https://github.com/zzzprojects/GraphDiff (no EF core version as of yet) + https://stackoverflow.com/a/21436713
-            // https://stackoverflow.com/a/24910673 + https://stackoverflow.com/a/24907546
         }
 
         // TODO: definitely can be written better
@@ -111,5 +104,12 @@ namespace WebApi.BL.Implementation
             _departmentsRepo.SaveChanges();
             return _departmentsRepo.GetByIdWithWorkers(departmentId)!;
         }
+
+        // https://stackoverflow.com/a/27177623
+        // https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/update-related-data?view=aspnetcore-6.0#update-the-instructors-controller-1
+        // https://www.learnentityframeworkcore.com/dbset/modifying-data + https://www.mikesdotnetting.com/article/303/entity-framework-core-trackgraph-for-disconnected-data
+        // https://stackoverflow.com/a/55190929
+        // https://stackoverflow.com/a/33059565 + https://github.com/zzzprojects/GraphDiff (no EF core version as of yet) + https://stackoverflow.com/a/21436713
+        // https://stackoverflow.com/a/24910673 + https://stackoverflow.com/a/24907546
     }
 }

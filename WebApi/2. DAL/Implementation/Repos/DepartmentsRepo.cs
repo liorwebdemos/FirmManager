@@ -14,12 +14,12 @@ namespace WebApi.DAL.Repos.Implementation
             _mainContext = mainContext;
         }
 
-        public DepartmentModel? GetByIdWithWorkers(int entityId)
+        public DepartmentModel? GetByIdWithWorkers(int departmentId)
         {
             // not ideal but works: https://stackoverflow.com/a/7348694
             return _mainContext.Set<DepartmentModel>()
                 .Include(t => t.Workers)
-                .FirstOrDefault(t => t.Id == entityId);
+                .FirstOrDefault(t => t.Id == departmentId);
         }
 
         public IQueryable<DepartmentModel> GetAllWithWorkers()
@@ -31,9 +31,11 @@ namespace WebApi.DAL.Repos.Implementation
 
         public new DepartmentModel Delete<TEntity>(int departmentId)
         {
-            //if we just use the generic repo's delete function, it won't take into account the FK (won't cascade delete)
+            //if we just use the generic repo's delete function for the department,
+            //without attaching its workers too, it won't cascade (and the delete will actually fail because it'll collide with the FK in the DB)
 
             DepartmentModel? toDelete = GetByIdWithWorkers(departmentId);
+            Console.WriteLine(_mainContext.ChangeTracker.DebugView.LongView);
             if (toDelete == default)
             {
                 throw new ArgumentException();
