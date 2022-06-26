@@ -67,6 +67,9 @@ namespace WebApi.Migrations
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DepartmentModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -90,7 +93,30 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("DepartmentModelId");
+
                     b.ToTable("Workers");
+                });
+
+            modelBuilder.Entity("WebApi.Models.WorkerModel", b =>
+                {
+                    b.HasOne("WebApi.Models.DepartmentModel", "Department")
+                        .WithMany("Workers")
+                        .HasForeignKey("DepartmentId");
+
+                    b.HasOne("WebApi.Models.DepartmentModel", null)
+                        .WithMany()
+                        .HasForeignKey("DepartmentModelId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("WebApi.Models.DepartmentModel", b =>
+                {
+                    b.Navigation("Workers");
                 });
 #pragma warning restore 612, 618
         }

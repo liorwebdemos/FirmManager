@@ -34,9 +34,11 @@
 		"fontawesome",
 		"fortawesome",
 		"Heebo",
+		"notyf",
 		"nowrap",
 		"rgba",
 		"semibold",
+		"Tagify",
 		"tailwindcss"
 	],
 	"files.exclude": {

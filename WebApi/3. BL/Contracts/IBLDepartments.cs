@@ -8,10 +8,12 @@ namespace WebApi.BL.Contracts
 
         IEnumerable<DepartmentModel> GetDepartments(bool isWithWorkers);
 
-        DepartmentModel AddDepartment(DepartmentModel department);
+        DepartmentModel AddDepartment(DepartmentModel department); //, int[] workersIdsToAssociate // a little ugly param, but didn't want to implement this https://stackoverflow.com/a/27177623
 
         DepartmentModel DeleteDepartment(int departmentId);
 
-        DepartmentModel UpdateDepartment(DepartmentModel department);
+        DepartmentModel UpdateDepartment(DepartmentModel department); //, int[] workersIdsToAssociate // a little ugly param, but didn't want to implement this https://stackoverflow.com/a/27177623
+
+        DepartmentModel SetDepartmentWorkers(int departmentId, int[] workersIds);
     }
 }

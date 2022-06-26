@@ -33,7 +33,7 @@ ux-dialog-overlay {
 	background-color: rgba(0, 0, 0, 0.35);
 }
 
-ux-dialog.pd-modal {
+ux-dialog.fm-modal {
 	@apply w-full; // override default `width: fit-content`
   min-height: 200px;
   max-height: 80vh;

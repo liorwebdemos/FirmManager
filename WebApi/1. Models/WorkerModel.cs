@@ -37,6 +37,6 @@ namespace WebApi.Models
         public int? DepartmentId { get; set; }
 
         /// <summary></summary>
-        public DepartmentModel? Department { get; set; }
+        public DepartmentModel? Department { get; set; } = null!;
     }
 }

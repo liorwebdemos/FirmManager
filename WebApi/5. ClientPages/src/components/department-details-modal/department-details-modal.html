@@ -1,57 +1,90 @@
 <template>
-  <ux-dialog class="pd-modal">
-    <ux-dialog-header>
-      ${movie.title}
-    </ux-dialog-header>
-    <ux-dialog-body>
-      <div class="flex flex-row flex-wrap gap-x-10 justify-between">
-        <div class="flex-grow flex flex-col gap-y-2">
-          <div if.bind="movie.year" class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5 hover:bg-gray-50">
-            <div class="w-20 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+  <form submit.delegate="updateDepartment()">
+    <ux-dialog class="fm-modal">
+      <ux-dialog-header>
+        Department Details
+      </ux-dialog-header>
+      <ux-dialog-body>
+        <div class="flex flex-col gap-y-3">
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-3 text-gray-500 fas fa-hashtag"></i>
+              ID
+            </div>
+            <div class="flex-grow">
+              ${selectedDepartment.id}
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-3 text-gray-500 fas fa-signature"></i>
+              Title
+            </div>
+            <div class="flex-grow font-medium">
+              <input type="text" value.bind="selectedDepartment.title" class="fm-input">
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-3 text-gray-500 far fa-comment"></i>
+              Description
+            </div>
+            <div class="flex-grow">
+              <textarea value.bind="selectedDepartment.description" class="fm-input" cols="50" rows="2"></textarea>
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-3 text-gray-500 fas fa-sliders-h"></i>
+              Status
+            </div>
+            <div class="flex-grow font-medium flex flex-row items-center gap-x-2">
+              <input type="checkbox" checked.bind="selectedDepartment.isActive">
+              <span>${selectedDepartment.isActive ? "Yes" : "No"}</span>
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-3 text-gray-500 fas fa-sliders-h"></i>
+              Workers
+            </div>
+            <div class="flex-grow font-medium flex flex-row items-center gap-x-2">
+              <button class="fm-button" click.delegate="openSetDepartmentWorkersModal()">
+                <i class="fas fa-user-friends"></i>
+                Set Workers
+              </button>
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
               <i class="w-5 mr-3 text-gray-500 far fa-calendar"></i>
-              Release Year
+              Created
             </div>
-            <div class="flex-grow font-medium">
-              ${movie.year}
+            <div class="flex-grow">
+              ${selectedDepartment.createdDate | toDateFormat:'dd/MM/yyyy HH:mm:ss'}
             </div>
-          </div>
-          <div if.bind="movie.crew" class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5 hover:bg-gray-50">
-            <div class="w-20 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
-              <i class="w-5 mr-3 text-gray-500 fas fa-user-friends"></i>
-              Crew
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-3 text-gray-500 fas fa-calendar"></i>
+              Last Updated
             </div>
-            <div class="flex-grow font-medium">
-              ${movie.crew}
+            <div class="flex-grow">
+              ${selectedDepartment.updatedDate | toDateFormat:'dd/MM/yyyy HH:mm:ss'}
             </div>
-          </div>
-          <div if.bind="movie.imDbRating"
-            class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5 hover:bg-gray-50">
-            <div class="w-20 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
-              <i class="w-5 mr-3 text-gray-500 fas fa-star-half-alt"></i>
-              IMDb Rating
-            </div>
-            <div class="flex-grow font-medium">
-              ${movie.imDbRating || 'N/A'}
-              <span class="font-normal">(${movie.imDbRatingCount | toFormattedNumber} reviewers)</span>
-            </div>
-          </div>
-          <div if.bind="movie.id" class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5 hover:bg-gray-50">
-            <div class="w-20 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
-              <i class="w-5 mr-3 text-gray-500 fas fa-external-link-alt"></i>
-              Movie Page
-            </div>
-            <div class="flex-grow font-medium break-all">
-              <a href="https://www.imdb.com/title/${movie.id}">www.imdb.com/title/${movie.id}</a>
-            </div>
-          </div>
+          </label>
         </div>
-        <div class="w-80 pt-5">
-          <img src.bind="movie.image" class="w-full">
-        </div>
-      </div>
-    </ux-dialog-body>
-    <!-- <ux-dialog-footer>
-      <button type="button" click.delegate="dialogController.close()">Close</button>
-    </ux-dialog-footer> -->
-  </ux-dialog>
+      </ux-dialog-body>
+      <ux-dialog-footer class="flex flex-row justify-end items-center gap-x-3">
+        <button type="button" class="fm-button !bg-orange-100" click.delegate="dialogController.cancel()">
+          <i class="fas fa-times"></i>
+          Close
+        </button>
+        <button type="submit" class="fm-button font-semibold !bg-green-100">
+          <i class="fas fa-check"></i>
+          Save Changes
+        </button>
+      </ux-dialog-footer>
+    </ux-dialog>
+  </form>
 </template>

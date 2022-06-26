@@ -1,4 +1,5 @@
-import { TrackedModel } from "models";
+import { Type } from "class-transformer";
+import { TrackedModel, WorkerModel } from "models";
 
 /**
  * 
@@ -16,4 +17,8 @@ export class DepartmentModel extends TrackedModel
 
   /**  */
   public isActive?: boolean;
+
+  /**  */
+  @Type(() => WorkerModel)
+  public workers?: WorkerModel[];
 }

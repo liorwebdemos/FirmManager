@@ -7,10 +7,12 @@ namespace WebApi.BL.Implementation
     public class BLWorkers : IBLWorkers
     {
         private readonly IGenericRepo _genericRepo;
+        private readonly IDepartmentsRepo _departmentsRepo;
 
-        public BLWorkers(IGenericRepo genericRepo)
+        public BLWorkers(IGenericRepo genericRepo, IDepartmentsRepo departmentsRepo)
         {
             _genericRepo = genericRepo;
+            _departmentsRepo = departmentsRepo;
         }
 
         public WorkerModel? GetWorkerById(int workerId)
@@ -44,6 +46,7 @@ namespace WebApi.BL.Implementation
             {
                 throw new ArgumentException();
             }
+
             // note: in a large-scale application, we'd use a tool to automate our mappings (like Mapster)
             toUpdate.IsraeliIdentityNumber = worker.IsraeliIdentityNumber;
             toUpdate.FirstName = worker.FirstName;
@@ -51,6 +54,7 @@ namespace WebApi.BL.Implementation
             toUpdate.Gender = worker.Gender;
             toUpdate.JobStartDate = worker.JobStartDate;
             toUpdate.JobEndDate = worker.JobEndDate;
+
             _genericRepo.SaveChanges();
             return toUpdate;
         }

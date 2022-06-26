@@ -3,10 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
-// external libraries
+// external libraries style sheets
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~notyf/notyf.min.css";
 
-// internal css
-@import "assets/css/buttons.scss";
-@import "assets/css/modals.scss";
-@import "assets/css/inputs.scss";
+// custom adjustments to external libraries style sheets
+@import "assets/css/lib-notyf.scss";
+
+// internal
+@import "assets/css/fm-buttons.scss";
+@import "assets/css/fm-modals.scss";
+@import "assets/css/fm-inputs.scss";
+@import "assets/css/fm-tables.scss";

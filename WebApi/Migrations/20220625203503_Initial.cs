@@ -41,21 +41,43 @@ namespace WebApi.Migrations
                     JobStartDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     JobEndDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     JobDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DepartmentId = table.Column<int>(type: "int", nullable: true)
+                    DepartmentId = table.Column<int>(type: "int", nullable: true),
+                    DepartmentModelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Workers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Workers_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Workers_Departments_DepartmentModelId",
+                        column: x => x.DepartmentModelId,
+                        principalTable: "Departments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Workers_DepartmentId",
+                table: "Workers",
+                column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Workers_DepartmentModelId",
+                table: "Workers",
+                column: "DepartmentModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Workers");
 
             migrationBuilder.DropTable(
-                name: "Workers");
+                name: "Departments");
         }
     }
 }

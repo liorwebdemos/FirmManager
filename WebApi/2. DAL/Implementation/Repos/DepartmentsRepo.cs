@@ -28,5 +28,17 @@ namespace WebApi.DAL.Repos.Implementation
                 .Include(t => t.Workers)
                 .AsNoTracking();
         }
+
+        public new DepartmentModel Delete<TEntity>(int departmentId)
+        {
+            //if we just use the generic repo's delete function, it won't take into account the FK (won't cascade delete)
+
+            DepartmentModel? toDelete = GetByIdWithWorkers(departmentId);
+            if (toDelete == default)
+            {
+                throw new ArgumentException();
+            }
+            return _mainContext.Remove(toDelete).Entity;
+        }
     }
 }

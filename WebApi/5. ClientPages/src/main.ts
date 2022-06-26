@@ -2,6 +2,7 @@ import { Aurelia } from "aurelia-framework";
 import environment from "../config/environment.json";
 import { PLATFORM } from "aurelia-pal";
 import { DialogConfiguration } from "aurelia-dialog";
+import "reflect-metadata";
 
 export function configure(aurelia: Aurelia): void
 {

@@ -4,6 +4,7 @@ import { PLATFORM } from "aurelia-pal";
 export function configure(config: FrameworkConfiguration): void
 {
   config.globalResources([
-    PLATFORM.moduleName("./to-formatted-number")
+    PLATFORM.moduleName("./to-formatted-number"),
+    PLATFORM.moduleName("./to-date-format")
   ]);
 }

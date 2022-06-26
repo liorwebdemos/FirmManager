@@ -5,6 +5,8 @@ namespace WebApi.DAL.Implementation.Contexts
 {
     public class MainContext : DbContext
     {
+        // on configuring ef core with NRTs: https://docs.microsoft.com/en-us/ef/core/miscellaneous/nullable-reference-types
+
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public MainContext(
@@ -14,7 +16,7 @@ namespace WebApi.DAL.Implementation.Contexts
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public DbSet<DepartmentModel> Departments { get; set; } = null!; // "null!" as suggested @ https://stackoverflow.com/a/57343485
+        public DbSet<DepartmentModel> Departments { get; set; } = null!;
         public DbSet<WorkerModel> Workers { get; set; } = null!;
 
         // TODO: it'd be cleaner to separate these to external files, where we configure each entity's part in the builder on its own
@@ -40,6 +42,16 @@ namespace WebApi.DAL.Implementation.Contexts
             //modelBuilder.Entity<WorkerModel>()
             //    .Navigation(t => t.Department)
             //    .AutoInclude();
+
+            //modelBuilder.Entity<DepartmentModel>()
+            //    .Property(t => t.Workers)
+            //    .IsRequired(false);
+
+            modelBuilder.Entity<WorkerModel>()
+                .HasOne<DepartmentModel>()
+                .WithMany()
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.SetNull); // cascade delete behavior (https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete#configuring-cascading-behaviors)
 
             base.OnModelCreating(modelBuilder);
         }

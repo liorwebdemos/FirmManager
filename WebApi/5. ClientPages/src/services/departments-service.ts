@@ -41,7 +41,7 @@ export class DepartmentsService
 
   public updateDepartment(department: DepartmentModel): Promise<DepartmentModel>
   {
-    return this.httpClient.put("departments", department)
+    return this.httpClient.put("departments", JSON.stringify(department))
       .then(response => response.json())
       .then((response: DepartmentModel) => plainToInstance(DepartmentModel, response));
   }
@@ -49,6 +49,13 @@ export class DepartmentsService
   public deleteDepartment(departmentId: number): Promise<DepartmentModel>
   {
     return this.httpClient.delete(`departments/${ departmentId }`)
+      .then(response => response.json())
+      .then((response: DepartmentModel) => plainToInstance(DepartmentModel, response));
+  }
+
+  public setDepartmentWorkers(departmentId: number, workersIds: number[]): Promise<DepartmentModel>
+  {
+    return this.httpClient.post(`departments/${ departmentId }/workers`, JSON.stringify(workersIds))
       .then(response => response.json())
       .then((response: DepartmentModel) => plainToInstance(DepartmentModel, response));
   }

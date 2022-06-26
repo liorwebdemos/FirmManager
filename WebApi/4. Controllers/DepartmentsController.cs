@@ -33,16 +33,22 @@ namespace WebApi.Controllers
             return _blMovies.AddDepartment(department);
         }
 
-        [HttpPut("")] // there's also REST convention of {departmentId}
+        [HttpPut("")] // there's a REST convention of {departmentId}
         public DepartmentModel UpdateDepartment([FromBody] DepartmentModel department)
         {
             return _blMovies.UpdateDepartment(department);
         }
 
         [HttpDelete("")]
-        public DepartmentModel DeleteDepartment(int departmentId) // can add parameter shouldDeleteWorkers to state whether or not associated workers should be disassociated (their FK set to null) or deleted too
+        public DepartmentModel DeleteDepartment(int departmentId) // can add parameter shouldDeleteWorkers to state whether or not associated workers should be disassociated (their FK set to null) or deleted too (cascade delete behavior)
         {
             return _blMovies.DeleteDepartment(departmentId);
+        }
+
+        [HttpPost("{departmentId}/workers")]
+        public DepartmentModel SetDepartmentWorkers(int departmentId, [FromBody] int[] workersIds)
+        {
+            return _blMovies.SetDepartmentWorkers(departmentId, workersIds);
         }
     }
 }
