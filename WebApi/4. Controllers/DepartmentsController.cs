@@ -33,7 +33,7 @@ namespace WebApi.Controllers
             return _blMovies.AddDepartment(department);
         }
 
-        [HttpPut("")] // there's a REST convention of {departmentId}
+        [HttpPut("")] // TODO: the REST convention is of {departmentId}
         public DepartmentModel UpdateDepartment([FromBody] DepartmentModel department)
         {
             return _blMovies.UpdateDepartment(department);

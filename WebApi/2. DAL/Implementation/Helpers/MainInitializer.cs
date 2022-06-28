@@ -20,7 +20,7 @@ namespace WebApi.DAL.Implementation.Initializers
             mainContext.SaveChanges();
         }
 
-        public static List<DepartmentModel> GetDepartmentSeed() // non-explicit return type to allow future changes with ease
+        public static List<DepartmentModel> GetDepartmentSeed()
         {
             return new List<DepartmentModel>()
             {

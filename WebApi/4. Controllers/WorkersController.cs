@@ -33,7 +33,7 @@ namespace WebApi.Controllers
             return _blMovies.AddWorker(worker);
         }
 
-        [HttpPut("")] // there's also REST convention of {workerId}
+        [HttpPut("")] // TODO: the REST convention is of {workerId}
         public WorkerModel UpdateWorker([FromBody] WorkerModel worker)
         {
             return _blMovies.UpdateWorker(worker);

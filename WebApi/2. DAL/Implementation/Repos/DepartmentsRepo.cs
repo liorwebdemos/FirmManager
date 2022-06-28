@@ -16,7 +16,7 @@ namespace WebApi.DAL.Repos.Implementation
 
         public DepartmentModel? GetByIdWithWorkers(int departmentId)
         {
-            // not ideal but works: https://stackoverflow.com/a/7348694
+            // https://stackoverflow.com/a/7348694
             return _mainContext.Set<DepartmentModel>()
                 .Include(t => t.Workers)
                 .FirstOrDefault(t => t.Id == departmentId);

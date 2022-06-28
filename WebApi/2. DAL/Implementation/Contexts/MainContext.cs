@@ -5,7 +5,7 @@ namespace WebApi.DAL.Implementation.Contexts
 {
     public class MainContext : DbContext
     {
-        // on configuring ef core with NRTs turned on: https://docs.microsoft.com/en-us/ef/core/miscellaneous/nullable-reference-types
+        // P.S. on configuring ef core with NRTs turned on: https://docs.microsoft.com/en-us/ef/core/miscellaneous/nullable-reference-types
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -22,22 +22,6 @@ namespace WebApi.DAL.Implementation.Contexts
         // TODO: it'd be cleaner to separate these to external files, where we configure each entity's part in the builder on its own
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // no need to set PKs since using conventions
-            //modelBuilder.Entity<DepartmentModel>()
-            //    .HasKey(t => t.Id);
-            //modelBuilder.Entity<WorkerModel>()
-            //    .HasKey(t => t.Id);
-
-            // useful but not actually needed for this specific use case we're overriding SaveChanges(). also, in theory, we'd automatically get all the classes that derive from TrackedModel instead of having to list the one by one
-            //modelBuilder.ApplyConfiguration(new TrackedModelConfiguration<DepartmentModel>()); 
-
-            //modelBuilder.Entity<DepartmentModel>()
-            //    .Navigation(t => t.Workers)
-            //    .AutoInclude();
-            //modelBuilder.Entity<WorkerModel>()
-            //    .Navigation(t => t.Department)
-            //    .AutoInclude();
-
             modelBuilder.Entity<WorkerModel>()
                 .HasOne(t => t.Department)
                 .WithMany(t => t.Workers)
