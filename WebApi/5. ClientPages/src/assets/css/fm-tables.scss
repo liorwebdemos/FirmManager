@@ -21,35 +21,6 @@
 			&:hover {
 				@apply bg-gray-100;
 			}
-			//&:focus,
-			//&:active,
-			//&.active {
-			//	@apply bg-gray-200;
-			//}
-			//&:nth-child(odd) {
-			//	@apply bg-gray-300;
-			//	&:hover {
-			//		@apply bg-gray-500;
-			//	}
-			//}
-			//&:nth-child(even) {
-			//	@apply bg-white;
-			//	&:hover {
-			//		@apply bg-gray-500;
-			//	}
-			//}
-			&.bg-red {
-				background-color: rgba(230, 52, 58, 0.1); // bg-hd-red-10 with alpha. TODO: use background-opacity when it's fixed
-				&:hover {
-					background-color: rgba(230, 52, 58, 0.2); // bg-hd-red-10 with alpha. TODO: use background-opacity when it's fixed
-				}
-			}
-			&.bg-gray {
-				background-color: rgba(0, 0, 0, 0.05); // bg-black with alpha. TODO: use background-opacity when it's fixed
-				&:hover {
-					background-color: rgba(0, 0, 0, 0.1); // bg-black with alpha. TODO: use background-opacity when it's fixed
-				}
-			}
 			.cell {
 				@apply flex-shrink-0;
 				@apply px-5 py-2.5;
