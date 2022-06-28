@@ -1,0 +1,8 @@
+<template bindable="routes">
+  <div class="flex flex-row flex-nowrap gap-x-2">
+    <a repeat.for="route of routes" href.bind="route.href"
+      class="fm-button rounded-b-none border-b-0 ${route.isActive ? 'bg-white font-semibold' : ''}">
+      ${route.title}
+    </a>
+  </div>
+</template>

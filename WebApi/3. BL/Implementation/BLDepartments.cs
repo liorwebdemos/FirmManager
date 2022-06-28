@@ -71,16 +71,16 @@ namespace WebApi.BL.Implementation
                 throw new Exception();
             }
 
-            IEnumerable<int> assignedWorkersIds = _departmentsRepo.GetAll<WorkerModel>()
+            IEnumerable<int> alreadyAssignedWorkersIds = _departmentsRepo.GetAll<WorkerModel>()
                 .Where(worker => worker.DepartmentId == departmentId)
                 .Select(worker => worker.Id)
                 .ToList();
-            IEnumerable<int> influencedWorkersIds = assignedWorkersIds.Concat(toAssignWorkersIds);
+            IEnumerable<int> influencedWorkersIds = alreadyAssignedWorkersIds.Concat(toAssignWorkersIds).Distinct();
 
             foreach (int id in influencedWorkersIds) // foreach is not very efficient (https://stackoverflow.com/a/21592733) but we won't update via the reference properites
             {
                 // workers to add
-                if (toAssignWorkersIds.Contains(id) && !assignedWorkersIds.Contains(id))
+                if (toAssignWorkersIds.Contains(id) && !alreadyAssignedWorkersIds.Contains(id))
                 {
                     var worker = _departmentsRepo.GetById<WorkerModel>(id);
                     if (worker == default)
@@ -88,9 +88,10 @@ namespace WebApi.BL.Implementation
                         throw new Exception();
                     }
                     worker.DepartmentId = departmentId;
+                    continue;
                 }
                 // workers to unassign
-                if (assignedWorkersIds.Contains(id) && !toAssignWorkersIds.Contains(id))
+                if (alreadyAssignedWorkersIds.Contains(id) && !toAssignWorkersIds.Contains(id))
                 {
                     var worker = _departmentsRepo.GetById<WorkerModel>(id);
                     if (worker == default)

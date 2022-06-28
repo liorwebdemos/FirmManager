@@ -3,17 +3,12 @@ import { DialogCancelableOperationResult, DialogController, DialogService } from
 import { DepartmentModel } from "models/department-model";
 import { DepartmentsService } from "services";
 import { handleErrors } from "decorators";
-import { SetDepartmentWorkersModal } from "components/set-department-workers-modal/set-department-workers-modal";
-// import { default as Tagify } from "@yaireo/tagify";
+import { DepartmentWorkersModal } from "components/department-workers-modal/department-workers-modal";
 
 @autoinject()
 export class DepartmentDetailsModal
 {
   private selectedDepartment: DepartmentModel;
-
-  // private tagifyInputElement: HTMLInputElement;
-  // private tagifyInstance: Tagify;
-  // private tagifyWhitelist: Tagify.BaseTagData[] = ["אפשרות 1", "אפשרות 2", "אפשרות 3"];
 
   constructor(
     private dialogController: DialogController,
@@ -28,24 +23,10 @@ export class DepartmentDetailsModal
 
   private activate(department: DepartmentModel): void
   {
-    // create clone (to avoid intermediate changes to the model being showed on other component before successful save)
+    // create clone (to avoid intermediate changes to the model being showed on other components before successful save)
     this.selectedDepartment = {
       ...department
-      // workers: department.workers && { ...department.workers }
     };
-  }
-
-  private attached(): void
-  {
-    // this.tagifyInstance = new Tagify(
-    //   this.tagifyInputElement,
-    //   {
-    //     whitelist: this.tagifyWhitelist,
-    //     addTagOnBlur: false,
-    //     editTags: false,
-    //     enforceWhitelist: true
-    //   }
-    // );
   }
 
   @handleErrors("An error occurred while saving the department's details.")
@@ -55,16 +36,11 @@ export class DepartmentDetailsModal
       .then(department => this.dialogController.ok(department));
   }
 
-  private openSetDepartmentWorkersModal(): void
+  private openDepartmentWorkersModal(): void
   {
     this.dialogService.open({
-      viewModel: SetDepartmentWorkersModal,
+      viewModel: DepartmentWorkersModal,
       model: this.selectedDepartment
     });
-  }
-
-  private detached(): void
-  {
-    // this.tagifyInstance?.destroy();
   }
 }

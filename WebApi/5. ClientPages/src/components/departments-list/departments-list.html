@@ -1,9 +1,14 @@
 <template>
   <div class="flex flex-col gap-y-5">
-    <div class="fm-table overflow-x-auto">
+    <div class="fm-table overflow-x-auto p-2 lg:p-5 shadow border rounded-lg rounded-tl-none">
       <div class="header">
-        <div class="cell w-40"></div>
-        <div class="cell w-12">
+        <div class="cell w-40">
+          <button class="fm-button bg-gray-200 hover:bg-gray-300" click.delegate="openAddDepartmentModal()">
+            <i class="fas fa-building w-5"></i>
+            New
+          </button>
+        </div>
+        <div class="cell w-16">
           ID
         </div>
         <div class="cell w-72">
@@ -23,25 +28,29 @@
         </div>
       </div>
       <div class="body">
+        <div if.bind="!departments.length" class="row">
+          <div class="cell">
+            <i class="far fa-flag mr-2"></i>
+            No Records.
+          </div>
+        </div>
         <div class="row" repeat.for="department of departments">
-          <div class="cell w-40 flex flex-row flex-nowrap gap-x-2">
-            <button class="fm-button" click.delegate="openDepartmentDetailsModal(department)">
+          <div class="cell w-40 flex flex-row flex-nowrap gap-x-3">
+            <button class="fm-button px-3" click.delegate="openDepartmentDetailsModal(department)">
               <i class="fas fa-pencil-alt"></i>
             </button>
-            <button class="fm-button" click.delegate="openSetDepartmentWorkersModal(department)">
+            <button class="fm-button px-3" click.delegate="openDepartmentWorkersModal(department)">
               <i class="fas fa-user-friends"></i>
             </button>
           </div>
-          <div class="cell w-12">
+          <div class="cell w-16">
             ${department.id}
           </div>
           <div class="cell w-72">
             ${department.title}
           </div>
           <div class="cell w-72 flex-grow">
-            <!-- <span class="max-w-fit"> -->
             ${department.description}
-            <!-- </span> -->
           </div>
           <div class="cell w-32 whitespace-nowrap">
             <i if.bind="department.isActive" class="fas fa-toggle-on mr-1"></i>

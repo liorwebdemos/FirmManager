@@ -34,7 +34,7 @@ export class WorkersService
 
   public addWorker(worker: WorkerModel): Promise<WorkerModel>
   {
-    return this.httpClient.post("workers", worker)
+    return this.httpClient.post("workers", JSON.stringify(worker))
       .then(response => response.json())
       .then((response: WorkerModel) => plainToInstance(WorkerModel, response));
   }

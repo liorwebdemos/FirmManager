@@ -1,8 +1,8 @@
 <template>
-  <form submit.delegate="updateDepartment()">
+  <form submit.delegate="updateWorker()">
     <ux-dialog class="fm-modal">
       <ux-dialog-header>
-        Department Details
+        Worker Details
       </ux-dialog-header>
       <ux-dialog-body>
         <div class="flex flex-col gap-y-3">
@@ -12,65 +12,58 @@
               ID
             </div>
             <div class="flex-grow">
-              ${selectedDepartment.id}
+              ${selectedWorker.id}
             </div>
           </label>
           <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
             <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
-              <i class="w-5 mr-4 text-gray-500 fas fa-signature"></i>
-              Title
+              <i class="w-5 mr-4 text-gray-500 far fa-id-card"></i>
+              First Name
             </div>
             <div class="flex-grow font-medium">
-              <input type="text" value.bind="selectedDepartment.title" class="fm-input">
+              <input type="text" value.bind="selectedWorker.firstName | toTitleCase" class="fm-input">
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-4 text-gray-500 far fa-id-card"></i>
+              Last Name
+            </div>
+            <div class="flex-grow font-medium">
+              <input type="text" value.bind="selectedWorker.lastName | toTitleCase" class="fm-input">
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-4 text-gray-500 far fa-id-card"></i>
+              Israeli Identity Number
+            </div>
+            <div class="flex-grow font-medium">
+              <input type="number" value.bind="selectedWorker.israeliIdentityNumber" class="fm-input">
             </div>
           </label>
           <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
             <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
               <i class="w-5 mr-4 text-gray-500 far fa-comment"></i>
-              Description
+              Job Description
             </div>
             <div class="flex-grow">
-              <textarea value.bind="selectedDepartment.description" class="fm-input" cols="50" rows="2"></textarea>
+              <textarea value.bind="selectedWorker.jobDescription" class="fm-input" cols="50" rows="2"></textarea>
             </div>
           </label>
           <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
             <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
               <i class="w-5 mr-4 text-gray-500 fas fa-sliders-h"></i>
-              Status
-            </div>
-            <div class="flex-grow font-medium flex flex-row items-center gap-x-2">
-              <input type="checkbox" checked.bind="selectedDepartment.isActive">
-              <span>${selectedDepartment.isActive ? "Active" : "Inactive"}</span>
-            </div>
-          </label>
-          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
-            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
-              <i class="w-5 mr-4 text-gray-500 far fa-user"></i>
-              Workers
-            </div>
-            <div class="flex-grow font-medium flex flex-row items-center gap-x-2">
-              <button class="fm-button" click.delegate="openDepartmentWorkersModal()">
-                <i class="fas fa-user-friends"></i>
-                Set Workers
-              </button>
-            </div>
-          </label>
-          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
-            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
-              <i class="w-5 mr-4 text-gray-500 far fa-calendar"></i>
-              Created
+              Department
             </div>
             <div class="flex-grow">
-              ${selectedDepartment.createdDate | toDateFormat:'dd/MM/yyyy HH:mm:ss'}
-            </div>
-          </label>
-          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
-            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
-              <i class="w-5 mr-4 text-gray-500 fas fa-calendar"></i>
-              Last Updated
-            </div>
-            <div class="flex-grow">
-              ${selectedDepartment.updatedDate | toDateFormat:'dd/MM/yyyy HH:mm:ss'}
+              <select value.bind="selectedWorker.departmentId" class="fm-input">
+                <option model.bind="null">-- None --</option>
+                <option repeat.for="department of departments" model.bind="department.id">
+                  #${department.id}
+                  <template if.bind="department.title">(${department.title})</template>
+                </option>
+              </select>
             </div>
           </label>
         </div>

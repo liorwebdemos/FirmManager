@@ -20,5 +20,5 @@ export class DepartmentModel extends TrackedModel
 
   /**  */
   @Type(() => WorkerModel)
-  public workers?: WorkerModel[];
+  public workers: WorkerModel[] = [];
 }

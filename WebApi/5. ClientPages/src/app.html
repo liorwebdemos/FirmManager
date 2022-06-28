@@ -2,11 +2,14 @@
   <require from="./app.scss"></require>
   <require from="./components/top-header/top-header.html"></require>
   <require from="./components/welcome-message/welcome-message"></require>
+  <require from="./components/top-menu/top-menu.html"></require>
 
   <div class="flex flex-col gap-y-10 pb-10">
     <top-header></top-header>
     <welcome-message></welcome-message>
-    <!--TODO: add nav menu-->
-    <router-view></router-view>
+    <div class="flex flex-col px-2 lg:px-5">
+      <top-menu routes.bind="router.navigation"></top-menu>
+      <router-view></router-view>
+    </div>
   </div>
 </template>

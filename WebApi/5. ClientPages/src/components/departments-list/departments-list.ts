@@ -1,15 +1,16 @@
-import { autoinject, computedFrom, bindable, bindingMode } from "aurelia-framework";
+import { AddWorkerModal } from "./../add-worker-modal/add-worker-modal";
+import { AddDepartmentModal } from "./../add-department-modal/add-department-modal";
+import { autoinject } from "aurelia-framework";
 import { DepartmentModel } from "models";
 import { DialogService } from "aurelia-dialog";
 import { DepartmentDetailsModal } from "components/department-details-modal/department-details-modal";
 import { DepartmentsService } from "services";
 import { handleErrors } from "decorators";
-import { SetDepartmentWorkersModal } from "components/set-department-workers-modal/set-department-workers-modal";
+import { DepartmentWorkersModal } from "components/department-workers-modal/department-workers-modal";
 
 @autoinject()
 export class DepartmentsList
 {
-  // @bindable({ defaultBindingMode: bindingMode.toView }) private departments: DepartmentModel[];
   private departments: DepartmentModel[];
 
   constructor(
@@ -22,7 +23,7 @@ export class DepartmentsList
     this.getDepartments();
   }
 
-  @handleErrors("חלה שגיאה בטעינת רשימת המחלקות")
+  @handleErrors("An error occurred while retrieving the departments.")
   private getDepartments(): Promise<DepartmentModel[]>
   {
     return this.departmentsService.getDepartments()
@@ -47,11 +48,31 @@ export class DepartmentsList
       });
   }
 
-  private openSetDepartmentWorkersModal(department: DepartmentModel): void
+  private openAddDepartmentModal(): void
   {
     this.dialogService.open({
-      viewModel: SetDepartmentWorkersModal,
+      viewModel: AddDepartmentModal
+    })
+      .whenClosed(response =>
+      {
+        if (response.wasCancelled) return;
+        this.departments.push(response.output);
+        return this.departments.sort(DepartmentsList.sortDepartmentsByUpdatedDateDescending);
+      });
+  }
+
+  private openDepartmentWorkersModal(department: DepartmentModel): void
+  {
+    this.dialogService.open({
+      viewModel: DepartmentWorkersModal,
       model: department
+    });
+  }
+
+  private openAddWorkerModal(): void
+  {
+    this.dialogService.open({
+      viewModel: AddWorkerModal
     });
   }
 

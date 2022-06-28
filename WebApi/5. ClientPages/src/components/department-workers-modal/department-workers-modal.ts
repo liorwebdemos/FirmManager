@@ -18,7 +18,7 @@ class UiWorkerModel
 }
 
 @autoinject()
-export class SetDepartmentWorkersModal
+export class DepartmentWorkersModal
 {
   private selectedDepartment: DepartmentModel;
   private uiWorkers: UiWorkerModel[];
@@ -36,24 +36,11 @@ export class SetDepartmentWorkersModal
 
   private activate(department: DepartmentModel): Promise<UiWorkerModel[]>
   {
-    // create clone (to avoid intermediate changes to the model being showed on other component before successful save)
     this.selectedDepartment = {
       ...department
     };
     return this.getUiWorkers();
   }
-
-  // private setUiWorkerCheckValue(uiWorker: UiWorkerModel, isChecked: boolean)
-  // {
-  //   this.uiWorkers = this.uiWorkers.map(uw =>
-  //   {
-  //     if (uw.data.id === uiWorker.data.id)
-  //     {
-  //       uw.isChecked = isChecked;
-  //     }
-  //     return uw;
-  //   });
-  // }
 
   @handleErrors("An error occurred while retrieving the workers.")
   private getUiWorkers(): Promise<UiWorkerModel[]>
@@ -65,6 +52,7 @@ export class SetDepartmentWorkersModal
   @handleErrors("An error occurred while setting the department's workers.")
   private setDepartmentWorkers(): Promise<DialogCancelableOperationResult>
   {
+    console.log(this.selectedDepartment);
     return this.departmentsService.setDepartmentWorkers(
       this.selectedDepartment.id,
       this.uiWorkers.filter(uw => uw.isChecked).map(uw => uw.data.id)

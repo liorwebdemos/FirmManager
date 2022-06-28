@@ -1,0 +1,75 @@
+<template>
+  <form submit.delegate="addWorker()">
+    <ux-dialog class="fm-modal">
+      <ux-dialog-header>
+        <i class="fas fa-user-plus mr-4"></i>
+        <span>Create Worker</span>
+      </ux-dialog-header>
+      <ux-dialog-body>
+        <div class="flex flex-col gap-y-3">
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-4 text-gray-500 far fa-id-card"></i>
+              Israeli Identity Number
+            </div>
+            <div class="flex-grow font-medium">
+              <input type="number" value.bind="worker.israeliIdentityNumber" class="fm-input">
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-4 text-gray-500 far fa-id-card"></i>
+              First Name
+            </div>
+            <div class="flex-grow font-medium">
+              <input type="text" value.bind="worker.firstName | toTitleCase" class="fm-input">
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-4 text-gray-500 far fa-id-card"></i>
+              Last Name
+            </div>
+            <div class="flex-grow font-medium">
+              <input type="text" value.bind="worker.lastName | toTitleCase" class="fm-input">
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-4 text-gray-500 far fa-comment"></i>
+              Job Description
+            </div>
+            <div class="flex-grow">
+              <textarea value.bind="worker.jobDescription" class="fm-input" cols="50" rows="2"></textarea>
+            </div>
+          </label>
+          <label class="flex flex-row flex-nowrap gap-x-5 lg:gap-x-10 px-3 py-0.5">
+            <div class="w-24 lg:w-32 flex-shrink-0 flex flex-row flex-nowrap items-center text-gray-800 tracking-tight">
+              <i class="w-5 mr-4 text-gray-500 fas fa-sliders-h"></i>
+              Department
+            </div>
+            <div class="flex-grow font-medium flex flex-row items-center gap-x-2">
+              <select value.bind="worker.departmentId" class="fm-input">
+                <option model.bind="null">-- None --</option>
+                <option repeat.for="department of departments" model.bind="department.id">
+                  #${department.id}
+                  <template if.bind="department.title">(${department.title})</template>
+                </option>
+              </select>
+            </div>
+          </label>
+      </ux-dialog-body>
+      <ux-dialog-footer class="flex flex-row justify-end items-center gap-x-3">
+        <button type="button" class="fm-button bg-orange-100 hover:bg-orange-200"
+          click.delegate="dialogController.cancel()">
+          <i class="fas fa-times"></i>
+          Close
+        </button>
+        <button type="submit" class="fm-button font-semibold bg-green-100 hover:bg-green-200">
+          <i class="fas fa-plus"></i>
+          Add Worker
+        </button>
+      </ux-dialog-footer>
+    </ux-dialog>
+  </form>
+</template>

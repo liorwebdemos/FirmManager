@@ -1,4 +1,4 @@
-button.fm-button {
+.fm-button {
   @apply h-10;
   @apply flex flex-row flex-nowrap;
   @apply items-center;
@@ -6,13 +6,13 @@ button.fm-button {
   @apply px-5 py-2.5;
   @apply rounded;
   @apply border border-gray-300;
-  @apply bg-gray-200;
+  @apply bg-gray-100;
   &:hover {
-    @apply bg-gray-300;
+    @apply bg-gray-200;
   }
   &:disabled
   {
-    @apply bg-gray-100;
+    @apply bg-gray-50;
     @apply text-gray-500;
     @apply cursor-not-allowed;
   }

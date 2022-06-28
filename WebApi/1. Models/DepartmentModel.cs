@@ -16,6 +16,6 @@ namespace WebApi.Models
         public bool? IsActive { get; set; }
 
         /// <summary></summary>
-        public virtual List<WorkerModel> Workers { get; set; } = null!;
+        public List<WorkerModel>? Workers { get; set; } // note: going here against ef core's explicit instructions ("Collection navigations, which contain references to multiple related entities, should always be non-nullable. An empty collection means that no related entities exist, but the list itself should never be null."); this project has a core issue of not having independent models for different usages... need to fix this up.
     }
 }

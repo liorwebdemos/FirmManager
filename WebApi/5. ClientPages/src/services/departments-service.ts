@@ -34,7 +34,7 @@ export class DepartmentsService
 
   public addDepartment(department: DepartmentModel): Promise<DepartmentModel>
   {
-    return this.httpClient.post("departments", department)
+    return this.httpClient.post("departments", JSON.stringify(department))
       .then(response => response.json())
       .then((response: DepartmentModel) => plainToInstance(DepartmentModel, response));
   }

@@ -8,22 +8,22 @@ export class App
 
   public configureRouter(config: RouterConfiguration, router: Router): void
   {
-    config.title = "FirmManager";
+    config.title = "Firm Manager";
     config.map([
       {
         route: "",
         name: "departments-list",
         moduleId: PLATFORM.moduleName("./components/departments-list/departments-list"),
         nav: true,
-        title: "Departments List"
+        title: "Departments"
+      },
+      {
+        route: "workers",
+        name: "workers-list",
+        moduleId: PLATFORM.moduleName("./components/workers-list/workers-list"),
+        nav: true,
+        title: "Workers"
       }
-      // {
-      //   route: "workers",
-      //   name: "workers-list",
-      //   moduleId: PLATFORM.moduleName("./components/workers-list/workers-list"),
-      //   nav: true,
-      //   title: "Workers List"
-      // }
     ]);
 
     this.router = router;
